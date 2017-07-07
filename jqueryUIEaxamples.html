@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Draggable - Default functionality</title>
+  <link rel="stylesheet" href="C:/Users/pkumarm/Desktop/javascriptwork/jquery-ui-1.10.2/themes/base/jquery-ui.css">
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="C:/Users/pkumarm/Desktop/javascriptwork/jquery-ui-1.10.2/ui/jquery-ui.js"></script>
+  <link rel="stylesheet" href="C:/Users/pkumarm/Desktop/javascriptwork/jquery-ui-1.10.2/themes/base/style.css">
+  <style>
+  #draggable { width: 150px; height: 150px; padding: 0.5em; }
+  </style>
+  <script>
+	$(function () {
+		$(".draggable").draggable({
+			revert: true,
+			helper: 'clone',
+			start: function (event, ui) {
+			$(this).fadeTo('fast', 0.5);
+	},
+			stop: function (event, ui) {
+			$(this).fadeTo(0, 1);
+		}
+	});
+
+		$("#droppable").droppable({
+		hoverClass: 'active',
+		drop: function (event, ui) {
+		this.value = $(ui.draggable).text();
+			}
+		});	
+	});
+   $(function() {      
+    $( "#textBox2" ).resizable();
+	$( "#draggable" ).draggable();
+	$( "#date" ).datepicker();
+	$( "#textBox1" ).draggable();
+
+	});
+ 
+  $(function() {      
+	});
+	
+	
+  
+  </script>
+</head>
+<body>
+<div id="draggable" class="ui-widget-content">
+ </div>
+<input type = "text" id="textBox1" class="ui-widget-content" ></input>
+<input type="text" id="textBox2" />
+<input type="text" name="date" id="date">
+<!--<div id="draggable" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>-->
+ 
+ 
+</body>
+</html>

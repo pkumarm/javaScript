@@ -1,0 +1,105 @@
+
+<style>
+.scrollbar-macosx > .scroll-element,
+.scrollbar-macosx > .scroll-element div
+{
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 10;
+}
+ 
+.scrollbar-macosx > .scroll-element div {
+    display: block;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+ 
+.scrollbar-macosx > .scroll-element .scroll-element_track { display: none; }
+.scrollbar-macosx > .scroll-element .scroll-bar {
+    background-color: #6C6E71;
+    display: block;
+ 
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+ 
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+ 
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    -ms-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+}
+.scrollbar-macosx:hover > .scroll-element .scroll-bar,
+.scrollbar-macosx > .scroll-element.scroll-draggable .scroll-bar {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+}
+ 
+ 
+.scrollbar-macosx > .scroll-element.scroll-x {
+    bottom: 0px;
+    height: 0px;
+    left: 0;
+    min-width: 100%;
+    overflow: visible;
+    width: 100%;
+}
+ 
+.scrollbar-macosx > .scroll-element.scroll-y {
+    height: 100%;
+    min-height: 100%;
+    right: 0px;
+    top: 0;
+    width: 0px;
+}
+</style>
+<div class="scrollbar-macosx">
+    <p class="permanent">
+        Traditionally scrollbars are permanently displayed whenever an area of a webpage is
+        scrollable. By contrast, scrollbars in OSX Lion are hidden from sight, and revealed only
+        when scrolling content. In this example, scrollbars are revealed when mouse is over content.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a,
+        scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus.
+        Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel
+        hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue,
+        pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam
+        sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare,
+        ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget
+        nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam
+        viverra nisi, in interdum massa nibh nec erat.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a,
+        scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus.
+        Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel
+        hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue,
+        pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam
+        sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare,
+        ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget
+        nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam
+        viverra nisi, in interdum massa nibh nec erat.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a,
+        scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus.
+        Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel
+        hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue,
+        pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam
+        sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare,
+        ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget
+        nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam
+        viverra nisi, in interdum massa nibh nec erat.
+    </p>
+</div>

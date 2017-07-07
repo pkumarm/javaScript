@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<style>
+body{
+background-color: rgb(0, 255, 216);
+}
+.textboxs {
+    max-width: 200px;
+	max-height: 200px;
+	background-color: lightblue;
+	position:absolute;
+	}
+</style>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+  </script>
+  <script>
+    $(document).ready(function() {
+    $("#button1").click(function() {
+	$(".textboxs").animate({height:'100px',width:'173px'});
+	$(".textboxs").animate({left:'50px'},"slow");
+	$(".textboxs").animate({fontSize:'1em'},"slow");
+        $("#textBox1").animate({left:'1000px'},"slow");
+		$("#textBox1").animate({height:'300px',width:'300px'},"slow");
+		$("#textBox1").animate({fontSize:'3em'},"slow");
+    });
+	$("#button2").click(function() {
+	$(".textboxs").animate({height:'100px',width:'173px'});
+	$(".textboxs").animate({left:'50px'},"slow");
+	$(".textboxs").animate({fontSize:'1em'},"slow");
+
+        $("#textBox2").animate({left:'1000px'},"slow");
+		$("#textBox2").animate({height:'300px',width:'300px'},"slow");
+		$("#textBox2").animate({fontSize:'3em'},"slow");
+		});
+	$("#button3").click(function() {
+	$(".textboxs").animate({height:'100px',width:'173px'});
+	$(".textboxs").animate({left:'50px'},"slow");
+	$(".textboxs").animate({fontSize:'1em'},"slow");
+
+        $("#textBox3").animate({left:'1000px'},"slow");
+		$("#textBox3").animate({height:'300px',width:'300px'},"slow");
+		$("#textBox3").animate({fontSize:'3em'},"slow");
+		});
+	$("#button4").click(function() {
+	$(".textboxs").animate({height:'100px',width:'173px'});
+	$(".textboxs").animate({left:'50px'},"slow");
+	$("textboxs").animate({fontSize:'1em'},"slow");
+
+        $("#textBox4").animate({left:'1000px'},"slow");
+		$("#textBox4").animate({height:'300px',width:'300px'},"slow");
+		$("#textBox4").animate({fontSize:'3em'},"slow");
+	});
+	$("#button5").click(function() {
+	$(".textboxs").animate({height:'100px',width:'173px'});
+	$(".textboxs").animate({left:'50px'},"slow");
+	$(".textboxs").animate({fontSize:'1em'},"slow");
+
+        $("#textBox5").animate({left:'1000px'},"slow");
+		$("#textBox5").animate({height:'300px',width:'300px'},"slow");
+		$("#textBox5").animate({fontSize:'3em'},"slow");
+	});
+	$("#button6").click(function() {
+	$(".textboxs").animate({height:'100px',width:'173px'});
+	$(".textboxs").animate({left:'50px'},"slow");
+	$(".textboxs").animate({fontSize:'1em'},"slow");
+
+        $("#textBox6").animate({left:'1000px'},"slow");
+		$("#textBox6").animate({height:'300px',width:'300px'},"slow");
+		$("#textBox6").animate({fontSize:'3em'},"slow");
+	});
+    });
+  </script>
+</head>
+
+<body>
+   <input type="button" value="1" id="button1" class = "buttons"> <input style = "height: 100px;" type = "text" id = "textBox1" class = "textboxs" value = "1">
+   <br>
+   <input type="button" value="2" id="button2" class = "buttons"> <input style = "height: 100px;" type = "text" id = "textBox2" class = "textboxs" value = "2">
+   <br>
+   <input type="button" value="3" id="button3" class = "buttons"> <input style = "height: 100px;" type = "text" id = "textBox3" class = "textboxs" value = "3">
+   <br>
+   <input type="button" value="4" id="button4" class = "buttons"> <input style = "height: 100px;" type = "text" id = "textBox4" class = "textboxs" value = "4">
+   <br>
+   <input type="button" value="5" id="button5" class = "buttons"> <input style = "height: 100px;" type = "text" id = "textBox5" class = "textboxs" value = "5">
+   <br>
+   <input type="button" value="6" id="button6" class = "buttons"> <input style = "height: 100px;" type = "text" id = "textBox6" class = "textboxs" value = "6">
+</body>
+</html>

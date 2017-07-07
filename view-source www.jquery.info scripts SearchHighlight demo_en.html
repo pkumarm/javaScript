@@ -1,0 +1,105 @@
+
+
+<html>
+  <head>
+	  <title>jQuery plugin "SearchHighlight"</title>
+		
+	   <script src="jquery-1.1.2.pack.js" type="text/javascript"></script>
+	  <script src="SearchHighlight.js" type="text/javascript"></script>
+
+	  <script type="text/javascript">
+	  
+	  function searchAndmark(){
+		reset_highlight();
+        
+        $("input:text").change(reset_highlight);
+	  }
+  	  var options = {};
+      
+      function reset_highlight() {
+        
+        $("span[@class^=hilite]").each(function(){
+          var hilite = $(this);
+          var txt_el = hilite[0].previousSibling;
+          if(txt_el && txt_el.nodeType==3)
+            txt_el.data += hilite.text();
+          else {
+            hilite.before(hilite.text());
+            txt_el = hilite[0].previousSibling;
+          }
+          if(hilite[0].nextSibling && hilite[0].nextSibling.nodeType==3) {
+            txt_el.data += hilite[0].nextSibling.data;
+            $(hilite[0].nextSibling).remove();
+          }
+          hilite.remove();
+        });
+        $("#code").text(build_options());
+        $(document).SearchHighlight(options);
+        
+      }
+      function build_options() {
+        var code = "\tjQuery(function(){\r\n\t\tvar options = {\r\n\t\t\t";
+
+        //options.debug_referrer = jQuery("input[@name=referrer]").val();
+        
+        
+          options.keys = $("input[@name=keys]").val();
+          code += 'keys:"'+options.keys+'"';
+        
+        
+        code += "\r\n\t\t}\r\n\t\tjQuery(document).SearchHighlight(options);\r\n\t});";
+        return code;
+      }
+    </script>
+	  <style type="text/css">
+      
+      .hilite,.hilite1 {background-color: yellow}
+	  </style>
+  </head>
+  <body>
+    <h1>jQuery plugin "SearchHighlight"</h1>
+	
+    <div>
+     
+          
+          <input type="texte" name="keys"  /><input name="keys_button" type="button" value="Submit" onClick=searchAndmark(); />        
+        
+      <h2>Code</h2>
+      <pre id="code">
+        $(function(){
+          var options = {};
+          $(document).SearchHighlight(options);
+        });
+      </pre>
+    </div>
+    <h2>Text</h2>
+    <pre>
+    Nel mezzo del cammin di nostra vita
+    mi ritrovai per una selva oscura,
+    ché la diritta via era smarrita.
+    </pre>
+    <div class="highlightable">
+    <strong>This paragraph is wrapped inside a block with a class highlightable 
+	to delimitate the area enabled for highlight.</strong>
+    <pre>
+    Ahi quanto a dir qual era è cosa dura
+    esta selva selvaggia e aspra e forte
+    che nel pensier rinova la paura!
+    </pre>
+    </div>
+    
+    <div class="not_highlightable">
+    <strong>This paragraph is wrapped inside a block with a class not_highlightable to exclude it from the area enabled for highlight.</strong>
+    <pre>
+    Tant'è amara che poco è più morte;
+    ma per trattar del ben ch'i' vi trovai,
+    dirò de l'altre cose ch'i' v' ho scorte.
+    </pre>
+    </div>
+    
+    <pre>
+    La Divina Commedia - Dante Alighieri
+    </pre>
+    
+  </body>
+</html>

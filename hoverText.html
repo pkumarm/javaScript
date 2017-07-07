@@ -1,0 +1,64 @@
+<style>
+
+/*
+ * fixed table layout
+ */
+table {
+  font: larger sans-serif;
+  table-layout: fixed;
+  width: 500px;
+}
+th:nth-child(1) {
+  width: 20%;
+}
+th:nth-child(3) {
+  width: 20%;
+}
+
+/*
+ * width and overflow
+ * inline-block elements expand as much as content
+ * relative position makes z-index work
+ * explicit width and nowrap makes overflow work
+ */
+div {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*
+ * higher z-index brings element to front
+ * auto width cancels the overflow
+ */
+div:hover {
+  z-index: 1;
+  width: auto;
+  background-color: #FFFFCC;
+}
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><div>Johm Smith</div></td>
+      <td><div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></td>
+      <td><div>1-234-567890</div></td>
+    </tr>
+    <tr>
+      <td><div>Jane Doe</div></td>
+      <td><div>Suspendisse lacinia, nunc sed luctus egestas, dolor enim vehicula augue.</div></td>
+      <td><div>1-234-567890</div></td>
+    </tr>
+  </tbody>
+</table>

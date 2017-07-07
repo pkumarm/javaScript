@@ -1,0 +1,224 @@
+.profile_ttl_hd{
+  margin:0px;
+}
+.profile_ttl_hd ul{
+  padding:0px;
+}
+.profile_ttl{
+	list-style-type:none;
+	text-align:center;
+	margin-top:18px;
+}
+.profile_ttl_child{
+    border: 1px solid #ababab;
+	cursor:pointer;
+}
+.profile_ttl_child:hover .profile_about:before{
+    margin-top: -2em;
+}
+.individual_profile{
+    position:relative;
+}
+.profile_img{
+    position:relative;
+	z-index:100;
+}
+.profile_img .profile_imgg{
+    width:100%;
+}
+.profile_about_inner{
+  display: none;
+}
+.profile_about{
+   	background: #fff;
+    padding: 18px 0px 18px 0px;
+	position: relative;
+}
+.profile_about:before{
+  	width: 0;
+    height: 0;
+    border-top: 0 none;
+    border-right: 2.5em solid transparent;
+    border-bottom: 2.5em solid #fff;
+    border-left: 2.5em solid transparent;
+	transform: rotate(360deg);
+    left: 50%;
+    top: 0;
+    right: auto;
+    margin-left: -2.5em;
+	transition: position 150ms ease-in-out;
+	position: absolute;
+    content: '';
+	margin-top: -1.5em;
+	z-index:1000;
+}
+.profile_about_cld h4{
+   font-size: 20px;
+   letter-spacing: 0em;
+   font-family: calibri;
+   text-transform: uppercase;
+   color: #1C4C55;
+   margin:6px 0px;
+}
+.profile_about_1{
+   color: black;
+   font-family: calibri;
+   font-size: 14px;
+   margin:0px;
+}
+.profile_about_1 a .profile_about_1{
+   color: #337ab7;
+   font-family: calibri;
+   font-size: 14px;
+   margin:3px 0px;
+}
+.profile_about_1 .contact_phn{
+ 	color: #1c4c55;
+    font-family: calibri;
+    font-size: 14px;
+	margin:0px;
+}
+
+/*.profile_ttl_child:hover .profile_cnt{
+    z-index:101;
+	display:block;
+}*/
+
+.profile_cnt .aboutMe{
+    color: #fff;
+    font-size: 14px;
+    font-family: calibri;
+    text-align: justify;
+}
+.profile_cnt .quote img{
+    width:28px;
+	margin:4px;
+}
+.profile_cnt .quote{
+    color: #fff;
+    font-size: 14px;
+    font-family: calibri;
+    text-align: justify;
+}
+
+.profile_cnt{
+	position:absolute;
+	top:0px;
+	z-index:101;
+	height: 100%;
+  background: rgba(28,76,85,0.9);
+  padding: 12px 22px;
+  opacity: 0;
+  -webkit-transition:opacity, 0.6s linear;
+}
+
+@media (min-width: 560px){
+  .profile_cnt_display{
+    z-index:101 !important;
+  	opacity: 1 !important;
+    -webkit-transition:opacity, 0.6s linear !important;
+  }
+}
+
+
+@media (max-width: 559px){
+.profile_cnt_display{
+  z-index: 101 !important;
+  display: block !important;
+  max-height:350px !important;
+  opacity: 1;
+  -webkit-transition:max-height, 0.5s linear;
+  -moz-transition:max-height, 0.5s linear;
+  -o-transition:max-height, 0.5s linear;
+  transition:max-height, 0.5s linear;
+}
+.profile_ttl_hd li:nth-of-type(even) .profile_img {
+    float: right;
+}
+.profile_cnt{
+	position:relative;
+	top:0px;
+	z-index:99;
+  background: rgba(28,76,85,0.9);
+  padding: 0px;
+	display:block;
+  max-height: 0px;
+  opacity: 1;
+  overflow: hidden;
+  -webkit-transition:max-height, 0.5s linear;
+  -moz-transition:max-height, 0.5s linear;
+  -o-transition:max-height, 0.5s linear;
+  transition:max-height, 0.5s linear;
+  clear: both;
+}
+.profile_cnt .aboutMe, .profile_cnt .quote{
+   margin: 12px 20px;
+}
+
+.profile_ttl{
+  width:100%;
+}
+.profile_img{
+  width: 25%;
+   float: left;
+}
+.profile_about{
+  display: none;
+}
+.profile_ttl_child{
+  width: 100%;
+}
+.profile_about_inner {
+    display: block !important;
+    width: 75%;
+    float: left;
+    background: #fff;
+    padding-top: 4%;
+}
+.profile_about_cld h4 {
+    font-size: 16px;
+    letter-spacing: 0em;
+    font-family: calibri;
+    text-transform: uppercase;
+    color: #1C4C55;
+    margin: 2px 0px;
+}
+.profile_about_1 {
+    color: black;
+    font-family: calibri;
+    font-size: 13px;
+    margin: 0px;
+}
+.profile_about_1 a .profile_about_1 {
+    color: #337ab7;
+    font-family: calibri;
+    font-size: 13px;
+    margin: 0px 0px;
+}
+.profile_ttl_child:hover{
+   border:1px solid #286090 !important;
+}
+
+}
+
+@media (max-width: 440px){
+  .profile_img{
+    width: 30%;
+     float: left;
+  }
+  .profile_about_inner {
+      display: block !important;
+      width: 70%;
+      float: left;
+      background: #fff;
+      padding-top: 6%;
+      padding-bottom: 2%;
+  }
+}
+
+@media (max-width: 360px){
+   .profile_about_inner {
+     padding-top: 2%;
+     padding-bottom: 0%;
+   }
+}

@@ -1,0 +1,140 @@
+<html>
+<body>
+<table border="1">
+<tr><td>
+<input type = "text" id = "result" name = "result">
+
+</td></tr>
+<tr>
+<td>
+<table border="1" cellspacing="1" cellpadding="5">
+<tr><td><button type = "button" onclick = "getValue(1,'num')" value = "1" id = "button1">1</button></td>
+<td><button type = "button" onclick = "getValue(2,'num')" value = "2" id = "button2" >2</button></td>
+<td><button type = "button" onclick = "getValue(3,'num')" value = "3" id = "button3" >3</button></td>
+</tr>
+<tr><td><button type = "button" onclick = "getValue(4,'num')" value = "4" id = "button4" >4</button></td>
+<td><button type = "button" onclick = "getValue(5,'num')" value = "5" id = "button5" >5</button></td>
+<td><button type = "button" onclick = "getValue(6,'num')" value = "6" id = "button6" >6</button></td></tr>
+
+
+<tr><td><button type = "button" onclick = "getValue(7,'num')" value = "7" id = "button7" >7</button></td>
+<td><button type = "button" onclick = "getValue(8,'num')" value = "8" id = "button8" >8</button></td>
+<td><button type = "button" onclick = "getValue(9,'num')" value = "9" id = "button9" >9</button></td></tr>
+
+
+<tr><td><button type = "button" onclick = "getValue('+','add')">+</button></td>
+<td><button type = "button" onclick = "getValue(0,'num')">0</button></td>
+<td><button type = "button" onclick = "getValue('-','subb')">-</button></td></tr>
+
+<tr><td><button type = "button" onclick = "getValue('=','equ')">=</button></td>
+<td><button type = "button" onclick = "getValue('/','div')">/</button></td>
+<td><button type="reset" style="height:25px; width:30px" onclick = "clearResult()" > << </button></td></tr>
+</table>
+</td></tr>
+</table>
+
+
+<script language="JavaScript" type="text/javascript">
+var arg1 = "";
+var arg2 = "" ;
+var operator = "" ;
+var count = 0;
+var x = 0;
+var y = 0;
+var z = 0;
+var prevMethod = "";
+
+
+function getValue(value,type){
+document.getElementById("result").value =document.getElementById("result").value + value;
+if (type == "num"){
+	if(count == 0){
+		arg1 += value;
+		//alert("arg1    " + arg1);
+//alert(count + " ------ 1");
+	}else{
+
+	arg2 += value;
+	//alert("arg2         " + arg2);
+
+	}
+
+}
+if(type == "add"){
+x = parseInt(arg1);
+count += 1;
+//alert(count + " ----- 2");
+//alert("in add type--------" + x);
+//y = int.parseInt(arg2);
+//z = x + y;
+//document.getElementById("result").value = z;
+prevMethod = "Add";
+
+}
+if(type == "subb"){
+x = parseInt(arg1);
+count += 1;
+//alert(count + " ----- 2");
+//alert("in subb type--------" + x);
+//y = int.parseInt(arg2);
+//z = x + y;
+//document.getElementById("result").value = z;
+prevMethod = "subb";
+}
+
+if(type == "div"){
+x = parseInt(arg1);
+count += 1;
+prevMethod = "div"
+}
+
+
+
+if (type == "equ"){
+
+if(prevMethod == "Add"){
+
+//alert("in equ type from Add");
+
+y = parseInt(arg2);
+z = x+y;
+document.getElementById("result").value = z;
+//alert(z);
+}
+if(prevMethod == "subb"){
+//alert("in equ type from subb");
+
+y = parseInt(arg2);
+z = x-y;
+document.getElementById("result").value = z;
+//alert(z);
+}
+
+if(prevMethod == "div"){
+y = parseInt(arg2);
+z = x/y;
+document.getElementById("result").value = z;
+}
+}
+}
+function clearResult(){
+document.getElementById("result").value = "";
+arg1 = "";
+arg2 = "" ;
+operator = "" ;
+count = 0;
+x = 0;
+y = 0;
+z = 0;
+prevMethod = "";
+}
+
+
+
+</script>
+
+
+</body>
+</html>
+
+

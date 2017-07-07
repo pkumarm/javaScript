@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+		<meta name="author" content="www.frebsite.nl" />
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+		<meta name="robots" content="noindex, nofollow" />
+
+
+		<link type="text/css" rel="stylesheet" href="../css/leftSlide.css" />
+		
+		<script type="text/javascript" language="javascript" src="../js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="../js/leftSlide.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('nav#menu').mmenu();
+			});
+			
+			function populate(which,appln) {
+				var	frame = document.getElementsByName(which)[0];
+			if(appln == 'timesheet'){
+				frame.setAttribute('src','https://timesheet.trianz.com/');	
+			}else if(appln == 'rise'){
+				frame.setAttribute('src','https://rise.trianz.com/');	
+			}else{
+				frame.setAttribute('src','http://172.16.0.219/talento');	
+			}	
+			console.log($('#iframe').attributes.src);
+		}
+	
+		</script>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<a href="#menu"></a>
+				IT Apps
+			</div>
+			<div id="content">
+				<!-- <iframe src='' width='100%' height='100%' name='iframe' id="iframe" ></iframe> -->
+	<p name='iframe' id="iframe" > test</p>
+			</div>
+			<nav id="menu">
+				<ul>
+					<!-- <li><input type="button" value="timesheet" onclick="populate('iframe','timesheet'); "></li>
+					<li><input type="button" value="rise" onclick="populate('iframe','rise');"></li>
+					<li><input type="button" value="talento" onclick="populate('iframe','talento');"></li> -->
+					
+					<li> <div class = "appButtons">
+							<input  type="radio" name="radio" id="radio1" class="radio" onclick="populate('iframe','timesheet')";/>
+							<label for="radio1">Time Sheet</label>
+						</div>
+					</li>
+					<li><div class = "appButtons">
+							<input  type="radio" name="radio" id="radio2" class="radio" onclick="populate('iframe','rise');"/>
+							<label for="radio2">Rise</label>
+						</div>
+					</li>
+					<li><div class = "appButtons">	
+							<input  type="radio" name="radio" id="radio3" class="radio" onclick="populate('iframe','talento');" />
+							<label for="radio3">Talento</label>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</body>
+</html>

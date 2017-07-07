@@ -1,0 +1,29 @@
+.carouselImage{
+	width: 100%;
+  }
+  #signIn{
+  width: 15%;
+  }
+  #register{
+  width: 15%;
+  }
+  #modal-dialog{
+  width: 35%;
+  }
+  .inputFields{
+	display: block;
+	width: 36%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #080808;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+  }
+     #myCarousel{
+	padding-left: 150px;
+	padding-right: 150px;
+   }

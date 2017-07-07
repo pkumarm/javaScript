@@ -1,0 +1,18 @@
+	.box{
+		width:100%;
+	}
+	.scoreTag{
+		font-family: cursive;
+		font-style: italic;
+		font-size: 200%;
+		color: blue;
+	}
+	#gameOver{
+		font-family: cursive;
+		font-style: italic;
+		font-size: 200%;
+		color: red;
+	}
+	#scoreContainer{
+		background-color:white;
+	}

@@ -1,0 +1,148 @@
+<style>
+/*******************************
+* ACCORDION WITH TOGGLE ICONS
+* Does not work properly if "in" is added after "collapse".
+* Get free snippets on bootpen.com
+*******************************/
+	.panel-group .panel {
+		border-radius: 0;
+		box-shadow: none;
+		border-color: #EEEEEE;
+	}
+
+	.panel-default > .panel-heading {
+		padding: 0;
+		border-radius: 0;
+		color: #212121;
+		background-color: #FAFAFA;
+		border-color: #EEEEEE;
+	}
+
+	.panel-title {
+		font-size: 14px;
+	}
+
+	.panel-title > a {
+		display: block;
+		padding: 15px;
+		text-decoration: none;
+	}
+
+	.more-less {
+		float: right;
+		color: #212121;
+	}
+
+	.panel-default > .panel-heading + .panel-collapse > .panel-body {
+		border-top-color: #EEEEEE;
+	}
+
+/* ----- v CAN BE DELETED v ----- */
+body {
+	background-color: #26a69a;
+}
+
+.demo {
+	padding-top: 60px;
+	padding-bottom: 110px;
+}
+
+.demo-footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 15px;
+	background-color: #212121;
+	text-align: center;
+}
+
+.demo-footer > a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 14px;
+	color: #fff;
+}
+</style>
+
+<div class="container demo">
+
+	
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						<i class="more-less glyphicon glyphicon-plus"></i>
+						What is Petya Ransomware? 
+					</a>
+				</h4>
+			</div>
+			<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				<div class="panel-body">
+					 Petya / Petrwrap / NotPetya / GoldenEye / ExPetr (assigned by Kaspersky labs) is a ransomware virus that affects Microsoft Windows based systems. This ransomware outbreak, though smaller than the previous WannaCry attack, has had a considerable impact. This is a new version of the previously known Petya ransomware virus. It demands payment in bitcoin wallet and contains a personal Posteo email ID, wowsmith123456@posteo.net. It demands a ransom of $300 worth of Bitcoins
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingTwo">
+				<h4 class="panel-title">
+					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<i class="more-less glyphicon glyphicon-plus"></i>
+						What makes it dangerous?
+					</a>
+				</h4>
+			</div>
+			<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				<div class="panel-body">
+					Unlike other ransomware viruses, it encrypts the Master File Table (MFT) for NTFS partitions. Each file on an NTFS volume is represented by a record in a special file called the master file table (MFT). If the MFT is corrupted the file system structure on the disk becomes unusable. It also overwrites MBR (Master Boot Record) with a custom bootloader that shows a ransom note and prevents the victim from booting their computer. This means that once a machine is infected it is in a complete state of lockdown. This makes it more intrusive. In comparison, the WannaCry ransomware virus targeted only specific file extensions while still allowing the operating system access. Also, unlike WannaCry, this ransomware does not have a kill switch. It also has the capability to steal login credentials and spread laterally. This is of major concern if the ransomware virus lands on machines with administrative privileges. The above mentioned email ID has been shutdown, thus breaking the chain to obtain decryption keys for infected systems. This implies that even after the ransom is paid (though not recommended), there's no recourse to save the infected machines.
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingThree">
+				<h4 class="panel-title">
+					<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<i class="more-less glyphicon glyphicon-plus"></i>
+						How does it spread?
+					</a>
+				</h4>
+			</div>
+			<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+				<div class="panel-body">
+					It uses EternalBlue MS17-010 to propagate. The ransomware spreads by clicking on links and downloading malicious files over internet and email. These emails contain malicious office documents which use the above mentioned vulnerability to download and run the Petya installer. The installer then executes the SMB exploit (EternalBlue) and spreads to new computers on the same network. It scans the network for specific ports, searches for the vulnerability and then exploits it to inject the malware in the new machine and thus it spreads widely across the network. It is also being reported that the ransomware virus spreads by stealing login credentials using WMIC / PSExec tools. Another infection vector are the software updates published by a little-known Ukrainian firm, MeDoc. It is also reported to spread via The EternalRomance exploit – a remote code execution exploit targeting Windows XP to Windows 2008 systems over TCP port 445.
+				</div>
+			</div>
+		</div>
+
+	</div><!-- panel-group -->
+	
+	
+	
+</div><!-- container -->
+<input type="text" name="product" list="productName"/>
+<datalist id="productName">
+    <option value="Pen">Pen</option>
+    <option value="Pencil">Pencil</option>
+    <option value="Paper">Paper</option>
+</datalist>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+function toggleIcon(e) {
+        $(e.target)
+            .prev('.panel-heading')
+            .find(".more-less")
+            .toggleClass('glyphicon-plus glyphicon-minus');
+    }
+    $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+    $('.panel-group').on('shown.bs.collapse', toggleIcon);
+
+</script>

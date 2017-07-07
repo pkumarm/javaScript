@@ -1,0 +1,265 @@
+<div id = "container">
+<h1> Tic Toc </h1>
+	<table  class="table table-bordered">
+		<tbody id = "tictacBody">
+		</tbody>
+	</table>
+</div>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<script src = "../js/jquery-3.1.1.min.js"></script>
+<style>
+	#container{
+		padding: 280px;
+	}
+	.cell {
+		//background-color: red;
+		height: 50px;
+		width: 50px;
+    }
+</style>
+<script>
+	var dataArray = [[2,2,2],[2,2,2],[2,2,2]];
+	var html = "";
+	var winningObjectMain = {
+		"00":[
+			{"0-1":"0-2"},
+			{"1-0":"2-0"},
+			{"1-1":"2-2"},
+			{"0-2":"0-1"},
+			{"2-0":"1-0"},
+			{"2-2":"1-1"},
+			{"2-1":""},
+			{"1-2":""}
+		],
+		"01":[
+			{"1-0":""},
+			{"0-0":"0-2"},
+			{"0-2":"0-0"},
+			{"1-1":"2-1"},
+			{"2-1":"1-1"},
+			{"2-0":""},
+			{"2-2":""},
+			{"1-2":""}
+		],
+		"02":[
+			{"0-0":"0-1"},
+			{"0-1":"0-0"},
+			{"1-2":"2-2"},
+			{"2-2":"1-2"},
+			{"1-1":"2-0"},
+			{"2-0":"1-1"},
+			{"1-0":""},
+			{"2-1":""}
+		],
+		"10":[
+			{"1-1":"1-2"},
+			{"1-2":"1-1"},
+			{"0-0":"2-0"},
+			{"2-0":"0-0"},
+			{"0-1":""},
+			{"0-2":""},
+			{"2-1":""},
+			{"2-2":""}
+		],
+		"11":[
+			{"1-0":"1-2"},
+			{"1-2":"1-0"},
+			{"0-1":"2-1"},
+			{"2-1":"0-1"},
+			{"0-0":"2-2"},
+			{"2-2":"0-0"},
+			{"0-2":"2-0"},
+			{"2-0":"0-2"}
+		],
+		"12":[
+			{"1-0":"1-1"},
+			{"1-1":"1-0"},
+			{"0-2":"2-2"},
+			{"2-2":"0-2"},
+			{"0-0":""},
+			{"0-1":""},
+			{"2-0":""},
+			{"2-1":""}
+		],
+		"20":[
+			{"2-1":"2-2"},
+			{"2-2":"2-1"},
+			{"0-0":"1-0"},
+			{"1-0":"0-0"},
+			{"0-2":"1-1"},
+			{"1-1":"0-2"},
+			{"0-1":""},
+			{"1-2":""}
+		],
+		"21":[
+			{"2-0":"2-2"},
+			{"2-2":"2-0"},
+			{"1-0":"1-1"},
+			{"1-1":"1-0"},
+			{"0-0":""},
+			{"0-1":""},
+			{"0-2":""},
+			{"1-2":""}
+			
+		],
+		"22":[
+			{"2-0":"2-1"},
+			{"2-1":"2-0"},
+			{"0-2":"1-2"},
+			{"1-2":"0-2"},
+			{"0-0":"1-1"},
+			{"1-1":"0-0"},
+			{"0-1":""},
+			{"1-0":""}
+		]
+	}
+	function createBody(arr){
+		for(i=0;i<3;i++){
+			html+= "<tr>"
+			for(j=0;j<3;j++){
+				if(arr[0,i][0,j] == 0){
+					html+= "<td class ='tictac'> <div class = 'cell' id = "+i+","+j+" position = "+i+""+j+">O</div> </td>";
+				}else if(arr[0,i][0,j] == 1){
+					html+= "<td class ='tictac'> <div class = 'cell' id = "+i+","+j+" position = "+i+""+j+">X</div> </td>";
+				}else{
+					html+= "<td class ='tictac'> <div class = 'cell' id = "+i+","+j+" position = "+i+""+j+"></div> </td>";
+				}
+			}
+				html+= "</tr>"
+		}
+		$("#tictacBody").html(html);
+		addTic();
+	}
+	var winningObjectTemp;
+	function addTic(){
+		$('.tictac').each(function(){
+			$(this).on('click', function(){
+				var id = (this).childNodes[1].id;
+				var positionArray = id.split(',');
+				dataArray[positionArray[0]][positionArray[1]] = 1;
+				ticPos = ""+positionArray[0]+positionArray[1];
+				tmpTicPos = ""+positionArray[0]+"-"+positionArray[1];
+				//console.log("tmpTicPos : " + tmpTicPos);
+				html = "";
+				createBody(dataArray);
+				var youwin = "";
+				 youwin = checkWin();
+				if(youwin != "you Won"){
+					addToc();
+				}
+			})
+		})
+	}
+	var count = 0
+	function addToc(){
+	
+		if(count < 5 ){
+			var tocPosition = getRandomPosition();
+			count+=1;
+		}
+		console.log("tocPosition : " + tocPosition);
+				var tocPositionArray = tocPosition.split('-');
+				dataArray[tocPositionArray[0]][tocPositionArray[1]] = 0;
+				html = "";
+				createBody(dataArray);
+				checkWin();
+	}
+	var finalToc = "";
+	var tempWinningArray = "";
+
+	function getRandomPosition(){		
+		i = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+		j = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+		//console.log(tempWinningArray);
+		//console.log(tmpTicPos);
+		if(tempWinningArray == ""){
+			tempWinningArray = winningObjectMain[ticPos];
+			tmpRand = Math.floor(Math.random()*(tempWinningArray.length -1 )+1);
+			//console.log(tempWinningArray[tmpRand]);
+			//console.log('inside if  ');
+			if(Object.keys(tempWinningArray[tmpRand])[0] != ""){
+			//console.log('inside abc ');
+				ijArray = Object.keys(tempWinningArray[tmpRand])[0].split('-');
+				i = ijArray[0];
+				j = ijArray[1];
+			}else{
+			//console.log('inside def ');
+				return getRandomPosition();
+			}
+		}else{
+			//console.log('inside else ' + tempWinningArray.length);
+			for(p = 0; p<tempWinningArray.length; p++){
+			//console.log('inside for loop p');
+			//console.log (" p : " + p + " " + Object.keys(tempWinningArray[p])[0] + " == " + tmpTicPos );
+			if(Object.keys(tempWinningArray[p])[0] == tmpTicPos){
+				tempWinningArray = tempWinningArray;
+				var statusTempWinningArray = "old"
+				//console.log('----- statusTempWinningArray is old');
+			}
+		}
+			if(statusTempWinningArray != "old"){
+				//console.log('statusTempWinningArray is new');
+				tempWinningArray = winningObjectMain[ticPos]
+				//console.log(tempWinningArray);
+			}
+			if(statusTempWinningArray == "old"){
+				//console.log('statusTempWinningArray is old');
+			for(k=0; k<tempWinningArray.length; k++){
+				//console.log('inside for ' + k);
+				if(Object.keys(tempWinningArray[k])[0] == tmpTicPos){
+					//console.log('inside if  ');
+					var index = k;
+					//console.log("index : " + index);
+				}
+			}
+		}else{
+			var index = Math.floor(Math.random()*(tempWinningArray.length -1 )+1);
+		}
+		if(index!=""){
+			tmpRand = index;
+		}
+		//console.log("index : " + index + " ------ ");
+			Object.keys(tempWinningArray[tmpRand]).toString().split('-');
+			key = Object.keys(tempWinningArray[tmpRand]).toString();
+		//console.log("key " + key);
+			if((tempWinningArray[tmpRand])[key+""]){
+				//console.log((tempWinningArray[tmpRand])[key+""]);
+				finalToc = (tempWinningArray[tmpRand])[key+""].split('-');
+				i = finalToc[0];
+				j = finalToc[1];
+				//console.log("tempArray[Rand]!=''");
+			}else{
+				tmpRand = Math.floor(Math.random()*(tempWinningArray.length -1 )+1);
+				index = "";
+				tempWinningArray = "";
+				//console.log("new tmpRand : " + tmpRand);
+				//console.log("tempArray[Rand] =''");
+				return getRandomPosition();
+			}
+		}
+		//console.log(" : i " +i +  " j " + j);
+		//console.log(dataArray);
+		if(dataArray[i][j] !== 2){
+			//console.log("inside if ");
+			tempWinningArray = "";
+			return getRandomPosition();
+		}else if(dataArray[i][j] == 2){
+			//console.log("inside else ");
+			return i+"-"+j;
+		}	
+	}
+
+	function checkWin(){
+		if(($("div[position='00']").text() == "X" && $("div[position='01']").text() == "X" && $("div[position='02']").text() == "X") || ($("div[position='10']").text() == "X" && $("div[position='11']").text() == "X" && $("div[position='12']").text() == "X") || ($("div[position='20']").text() == "X" && $("div[position='21']").text() == "X" && $("div[position='22']").text() == "X") || ($("div[position='00']").text() == "X" && $("div[position='10']").text() == "X" && $("div[position='20']").text() == "X") || ($("div[position='01']").text() == "X" && $("div[position='11']").text() == "X" && $("div[position='21']").text() == "X") || ($("div[position='02']").text() == "X" && $("div[position='12']").text() == "X" && $("div[position='22']").text() == "X") || ($("div[position='00']").text() == "X" && $("div[position='11']").text() == "X" && $("div[position='22']").text() == "X") || ($("div[position='02']").text() == "X" && $("div[position='11']").text() == "X" && $("div[position='20']").text() == "X") ){
+			alert('You Won');
+			return "you Won";
+		}else if(($("div[position='00']").text() == "O" && $("div[position='01']").text() == "O" && $("div[position='02']").text() == "O") || ($("div[position='10']").text() == "O" && $("div[position='11']").text() == "O" && $("div[position='12']").text() == "O") || ($("div[position='20']").text() == "O" && $("div[position='21']").text() == "O" && $("div[position='22']").text() == "O") || ($("div[position='00']").text() == "O" && $("div[position='10']").text() == "O" && $("div[position='20']").text() == "O") || ($("div[position='01']").text() == "O" && $("div[position='11']").text() == "O" && $("div[position='21']").text() == "O") || ($("div[position='02']").text() == "O" && $("div[position='12']").text() == "O" && $("div[position='22']").text() == "O") || ($("div[position='00']").text() == "O" && $("div[position='11']").text() == "O" && $("div[position='22']").text() == "O") || ($("div[position='02']").text() == "O" && $("div[position='11']").text() == "O" && $("div[position='20']").text() == "O")){
+			alert('You loose');
+			return "you loose";
+		}
+	}
+	$( document ).ready(function(){
+		createBody(dataArray);
+	});
+	
+</script>

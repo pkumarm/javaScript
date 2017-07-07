@@ -1,0 +1,56 @@
+<script>
+
+//a = {} or a = new Object()
+//b=[] or b=new Array();
+
+users=[];
+
+console.log("phanikumar")
+
+function addUser(name,age){
+	//creating user object
+	var user = {name:name,age:age};
+	//addto users array
+	users.push(user);
+	return users;
+}
+
+
+
+addUser('aaaa',34);
+addUser('terter',5);
+addUser('ccc',24);
+addUser('gfrty',8);
+addUser('ddd',50);
+
+function showUsers(){
+	for(var key in users ){
+		var user = users[key];
+		console.log(user)
+	}
+}
+
+function mySort(sortKey,sortOrder){
+
+if(sortOrder == "asc"){
+	users.sort(function(o1,o2){		
+		return o1[sortKey]>o2[sortKey]
+	});
+} else {
+		users.sort(function(o1,o2){		
+		return o1[sortKey]<o2[sortKey]
+console.log(users);
+});
+
+}
+}
+function add(a,b,c){
+	var s=0;
+	for(var i in arguments){
+		s+=arguments[i];
+	}	
+	return s;	
+}
+
+
+</script>

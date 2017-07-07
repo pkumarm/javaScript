@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="css/arrange.css" rel="stylesheet">
+</head>
+
+<body background="images/arrange.png">
+<div class = "row" id = "box">
+	<div class= "col-sm-4 col-md-2">
+    <button  type="button" class="btn btn-lg btn-primary" id="instructions" href="#" role="button" data-toggle="modal" data-target="#myModal">Instructions</button>
+	</div>
+    <div class = "container col-sm-4 col-md-8" id="container" >
+         <div class = "row">
+			<h1>Arrange the numbers from 1 to 8 in sequence</h1>
+			<div align="right" class= "col-sm-6 col-md-8"><table id="wrapper" border="2"></table></div>
+		</div>
+       <div class = "row">
+			<div align = "center" id='isGameComplete'></div>
+		</div>
+	</div>
+	<div align = "center" id = "scoreContainer" class= "col-sm-4 col-md-2">
+		<span id='moves'> Moves <div id='movesDiv'></div></span>
+    </div>
+</div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog" id="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X</button>
+                    <h2 class="form-signin-heading">Instructions</h2>
+                </div>
+                <div class="modal-body">
+                    <ul>
+					<b><li>The game is to arrange the numbers in sequence 1 to 8 in less number of attempts</li>
+			<li>Use keyboard arrow buttons left <kbd><</kbd> , right <kbd>></kbd> , up <kbd>^</kbd> , down <kbd>v</kbd> for moving the cells</li>
+            <li>Once the sequence is completed , you will get a message , showing game over</li><b>
+         </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src = "js/arrange.js"></script>
+</html>

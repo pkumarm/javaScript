@@ -1,0 +1,108 @@
+<html>
+<head>
+<style>
+.puzzledContainer{
+position:relative;
+}
+.puzzle{
+border: 1px solid;
+width: 200px;
+height: 200px;
+background-image:url('C:/Users/Public/Pictures/Sample Pictures/Penguins.jpg');
+position: absolute;
+}
+
+.puzzle:hover{
+box-shadow:5px 5px 5px;
+border: 1px solid white;
+}
+body{
+background-color: rgb(0, 255, 216);
+}
+</style>
+</head>
+<body>
+Image URL : <input type="text"   id = "imageurl" value = "C:/Users/Public/Pictures/Sample Pictures/Penguins.jpg" >
+<input type = "Button" , id = "Submit" value = "Submit" >
+<input type = "Button" , id = "showOriginal" value = "Show Original Picture"  >
+<img src="" id="orginalImage" style="display:none;width: 500px;">
+<div class="puzzledContainer" id = "puzzledContainer">
+</div>
+
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script>
+	var imagePuzzle={
+		init:function(){
+			var that = this;
+			$('#Submit').click(function(){
+				var imageurl = $('#imageurl').val();
+				$('#orginalImage').attr('src',imageurl)
+				$('#orginalImage').load(function(){
+					that.createPuzzle(this);			
+				})
+				//$('.puzzle').css("background-image","url('"+a+"')");
+			});	
+		},
+		
+		createPuzzle:function(img){			
+				var iw = img.width;
+				var ih = img.height;	
+				var nx=5;//number of cells along x
+				var ny=5;//number of cell along y
+				var cw = iw/nx; //cell width -x
+				var ch = ih/ny; //cell width -x
+				
+				console.log(iw+" "+ih+" "+cw+" "+ch);
+				
+				for(var i=0;i<nx;i++){
+					for(var j=0;j<ny;j++){
+				var imgDiv='<div class="puzzle" style="background-position: -'+i*cw+'px -'+j*ch+'px;left: '+i*cw+'px;top: '+j*ch+'px;width:'+cw+'px;height:'+ch+'px"></div>';
+				$('.puzzledContainer').append(imgDiv);		
+					}
+				}
+		},
+		
+		swap:function(div1,div2){
+		console.log('swap function');
+			if(div1!=null && div2!=null){
+			//swap positions
+			var pos = div1.offset();			
+			div1.offset(div2.offset());
+			div2.offset(pos);			
+			currentDiv=null;
+		}
+		},
+		
+	randomSwap:function(n){
+	alert('randomswap');
+		for(var i=0;i<n;i++){
+		console.log('randomswap1234  ' + i);
+			$('.puzzledContainer').append(imagePuzzle.swap($($('.puzzle').get(imagePuzzle.getRand(0,n))),$($('.puzzle').get(imagePuzzle.getRand(0,2)))));
+		}
+	},	
+	
+	getRand:function(a,b){
+	return Math.round(a+(b-a)*Math.random());	
+	},
+	
+	getPath:function(){
+	var path="";
+		$('.puzzle').each(function(){
+			var p = $(this).offset();
+			path+=p.top+"-"+p.left+"-";
+		});
+		return path;
+	},	
+	}
+	
+	imagePuzzle.randomSwap(25);
+	var initialPath = imagePuzzle.getPath();
+	imagePuzzle.init();
+	
+</script>
+
+
+</body>
+
+</html>

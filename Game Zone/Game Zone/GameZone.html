@@ -1,0 +1,139 @@
+<html lang="en">
+
+<head>
+    <link href="css/gameZone.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/dist/js/ie-emulation-modes-warning.js"></script>
+    <link href="bootstrap/dist/css/carousel.css" rel="stylesheet">
+</head>
+<!-- NAVBAR -->
+
+<body style="background-color: rgb(27, 242, 201);">
+    <title>Game Zone</title>
+    <div class="navbar-wrapper">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <h1 id="pleaseLogin"> Please Sign in</h1>
+            </nav>
+        </div>
+    </div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img class="carouselImage" src="images/GZ4.jpg" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Welcome To Game Zone.</h1>
+                        <p>
+                            <a class="btn btn-lg btn-primary" id="signUp" href="#" role="button" data-toggle="modal" data-target="#myModal">Sign In</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img class="carouselImage" src="images/GZ1.jpg" alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Enjoy The Thrill...!!!</h1>
+                        <p>
+                            <a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img class="carouselImage" src="images/GZ2.jpg" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Sign In Now</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+    <!-- login form -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog" id="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X</button>
+                    <h2 class="form-signin-heading">Please sign in</h2>
+                </div>
+                <div class="container">
+                    <form id="loginForm" name="loginForm" action='controller.html'>
+                        <input type="email" class="inputFields" id="emailAddress" placeholder="Email address" required autofocus>
+                        <input type="password" class="inputFields" id="password" placeholder="Password" required>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me
+
+                            </label>
+                        </div>
+                        <p style="margin: 0px 45px 14px">
+                            <button class="btn btn-primary btn-lg" id="signIn">Sign in</button>
+                            <button class="btn btn-primary btn-lg" id="register" href="#" role="button" class="close" data-dismiss="modal" data-toggle="modal" data-target="#Registration">Register</button>
+                        </p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Registration form -->
+    <div class="modal fade" id="Registration" role="dialog">
+        <div class="modal-dialog" id="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X</button>
+                    <h2 class="form-signin-heading">Please Register Here</h2>
+                </div>
+                <div class="container">
+                    <form>
+                        <input type="text" class="inputFields" id="firstName" placeholder="First Name" required autofocus>
+                        <br>
+                        <input type="text" class="inputFields" id="lastName" placeholder="Last Name" required>
+                        <br>
+                        <input type="text" class="inputFields" id="dateOfBirth" placeholder="DD/MMM/YYYY" required autofocus>
+                        <br>
+                        <input type="email" class="inputFields" id="emailAddress" placeholder="Email address" required autofocus>
+                        <br>
+                        <input type="password" class="inputFields" id="password" placeholder="Password" required>
+                        <br>
+                        <button class="btn btn-primary btn-lg" id="register">Register</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap/dist/js/docs.min.js"></script>
+    <script>
+        $('#signIn').click(function() {
+            var email = $('#emailAddress').val();
+            var password = $('#password').val();
+            if ("phani@gmail.com" === email) {
+                $('#loginForm').submit();
+            }
+        });
+    </script>
+</body>
+
+</html>

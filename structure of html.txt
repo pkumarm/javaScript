@@ -1,0 +1,15 @@
+<html>
+<head>
+//css
+</head>
+<body>
+//js and jquers
+//forms
+
+
+</body>
+</html>
+
+
+
+JavaScript is a language. jQuery is a library built with JavaScript to help JavaScript programmers who are doing common web tasks.browsers parse only html and css files as also js scripts. Hence, all javascript frameworks (jQuery, AngularJS, etc) are written in javascript. They provide you the oportunity to write js code easier but under the hood, they are all written in javascript.write less do more is jQuery's moto

@@ -1,0 +1,70 @@
+<html>
+<head>
+
+</head>
+
+<body>
+<!--
+<UL id="example_tree">
+    <LI><span>Example Item 1</span></LI>
+    <LI><span>Example Item 2</span></LI>
+    <LI><span>Example Sub List 3</span>
+        <UL>
+            <LI><span>Example Item 3.1</span></LI>
+            <LI><span>Example Item 3.2</span></LI>
+            <LI><span>Example Item 3.3</span></LI>
+        </UL>
+    </LI>
+    <LI><span>Example Sub List 4</span>
+        <UL>
+            <LI><span>Example Item 4.1</span></LI>
+            <LI><span>Example Item 4.2</span></LI>
+            <LI><span>Example Item 4.3</span>
+                <UL>
+                    <LI><span>Example Item 4.3.1</span></LI>
+                    <LI><span>Example Item 4.3.2</span></LI>
+                    <LI><span>Example Item 4.3.3</span></LI>
+                </UL>
+            </LI>
+        </UL>
+    </LI>
+</UL>
+-->
+<div class="wrapper" style="height:256px;">
+<div style="margin-top:0px;padding-top:0px;">
+<div class="tse-scrollable  quickLinkScroll" id="demo1-html" style="height:360px;">
+<ul class="tse-content nav example_tree" id="demo1" >
+	<li><span>HR Contacts</span>
+	<ul>
+		<li><a class="test" href="/group/hr/hr-contacts"><span>India</span></a></li>
+		<li><span>USA</span>
+		<ul>
+			<li><span><a class="test" href="/group/hr/consulting-contacts-us">Business Engagament</a></span></li>
+			<li><span><a class="test" href="/group/hr/contact-its-onsite">Business Technology</a></span></li>
+		</ul>
+		</li>
+		<li><span><a class="test" href="/group/hr/contacts-me">Middle East</a></span></li>
+	</ul>
+	</li>
+	<li><span><a class="test" href="/group/hr/professional-development">Professional Development</a></span></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--<script src="C:/Users/pkumarm/Desktop/javascriptwork/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+<script src="C:/Users/pkumarm/Desktop/javascriptwork/bootstrap-3.3.0-dist/dist/js/docs.min.js"></script> -->
+<script>
+
+$(function(){
+$('.example_tree').find('SPAN').click(function(e){
+	console.log('log');
+	console.log($(this).parent().children('UL'));
+    $(this).parent().children('ul').toggle();
+});
+});
+</script>
+</body>
+</html>

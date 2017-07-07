@@ -1,0 +1,328 @@
+<html>
+<body>
+<style>
+  .searchtitle-active {
+    border: 1px solid red;
+  }
+  .mark { background-color: #ff0; }
+ 
+</style>
+<script src="js/jquery-1.10.2.min.js"></script>
+
+	  <script src="js/SearchHighlight.js" type="text/javascript"></script>
+	  
+	  
+	   <script type="text/javascript">
+	  
+	  function searchAndmark(){
+		console.log('search')
+		reset_highlight();
+        
+        $("input:text").change(reset_highlight);
+	  }
+  	  var options = {};
+      
+      function reset_highlight() {
+        
+        $("span[class^=hilite]").each(function(){
+          var hilite = $(this);
+          var txt_el = hilite[0].previousSibling;
+          if(txt_el && txt_el.nodeType==3)
+            txt_el.data += hilite.text();
+          else {
+            hilite.before(hilite.text());
+            txt_el = hilite[0].previousSibling;
+          }
+          if(hilite[0].nextSibling && hilite[0].nextSibling.nodeType==3) {
+            txt_el.data += hilite[0].nextSibling.data;
+            $(hilite[0].nextSibling).remove();
+          }
+          hilite.remove();
+        });
+        $("#code").text(build_options());
+        $(document).SearchHighlight(options);
+        
+      }
+      function build_options() {
+        var code = "\tjQuery(function(){\r\n\t\tvar options = {\r\n\t\t\t";
+
+        //options.debug_referrer = jQuery("input[name=referrer]").val();
+        
+        
+          options.keys = $("input[name=keys]").val();
+          code += 'keys:"'+options.keys+'"';
+        
+        
+        code += "\r\n\t\t}\r\n\t\tjQuery(document).SearchHighlight(options);\r\n\t});";
+        return code;
+      }
+    </script>
+	
+	 <style type="text/css">
+      
+      .hilite,.hilite1 {background-color: yellow}
+	  </style>
+	  
+<div class="tabbable tabs-left">
+  <div class="mini-layout fluid">
+    <div class="search-body"></div>
+    <div class="mini-layout-sidebar">
+      <div class="input-prepend">
+        <input class="span2" type="text" name = "keys" id="searchText">
+        <button class="btn" onclick="searchAndmark();"><i class="icon-search">Search</i>
+        </button>
+
+        <!--       <span class="add-on"><i class="icon-search"></i></span> -->
+      </div>
+
+
+      <ul class="nav nav-tabs nav-pills nav-stacked">
+
+        <li class="active"><a href="#tabpane1" data-toggle="tab" class="searchtitle">Shopping Cart</a>
+        </li>
+
+        <li><a href="#tabpane2" data-toggle="tab" class="searchtitle">Exports Records To Excel</a>
+        </li>
+
+        <li><a href="#tabpane3" data-toggle="tab" class="searchtitle">Exports Records To Pdf</a>
+        </li>
+
+        <li><a href="#tabpane4" data-toggle="tab" class="searchtitle">Checkout</a>
+        </li>
+
+        <li><a href="#tabpane5" data-toggle="tab" class="searchtitle">Search to Add Parts </a>
+        </li>
+
+        <li><a href="#tabpane6" data-toggle="tab" class="searchtitle">Save To List</a>
+        </li>
+
+        <li><a href="#tabpane7" data-toggle="tab" class="searchtitle">Delete Parts</a>
+        </li>
+
+      </ul>
+
+    </div>
+    <div class="mini-layout-body">
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="tabpane1">
+
+
+
+          <p>
+            <strong>Shopping Cart</strong>
+          </p>
+          <hr>
+          <p>
+          </p>
+          <p>
+            Shopping cart can have at maximum 1000 parts. Shopping Cart parts are shown in summary with all details pertaining to header columns and expanded view columns (by click on [+] icon on the each row of the summary screen you can see fields in expanded view).</p>
+          <p>
+            Parts status of the items that are in the cart may change to Not Orderable or Unpriced over a period of time. There is also a possibility that price of the item in the cart can change over a period of time. In both the cases system will notify you by
+            an email notification. You can also view related comments of these changes in the expanded view column in the cart, If you perform partial checkout from the cart; remaining items will be retained in the cart.</p>
+
+          <p></p>
+        </div>
+
+        <div class="tab-pane " id="tabpane2">
+
+
+
+
+          <p>
+            <strong>Exports Records To Excel</strong>
+          </p>
+          <hr>
+          <p>
+          </p>
+          <p>
+            You can select one or more parts (Priced/Unpriced/Not Orderable) from search summary and click on Actions &gt; ‘Export records to excel' to export the selected parts to excel.</p>
+
+          <p></p>
+        </div>
+
+        <div class="tab-pane " id="tabpane3">
+
+
+
+
+          <p>
+            <strong>Exports Records To Pdf</strong>
+          </p>
+          <hr>
+          <p>
+          </p>
+          <p>
+            You can select one or more parts (Priced/Unpriced/Not Orderable) from search summary and click on Actions &gt; ‘Export records to pdf' to export the selected parts to pdf.</p>
+
+          <p></p>
+        </div>
+
+        <div class="tab-pane " id="tabpane4">
+
+
+
+
+          <p>
+            <strong>Checkout</strong>
+          </p>
+          <hr>
+          <p>
+          </p>
+          <p>
+            You can only checkout parts with the priced status and the quantity greater than zero.&nbsp;</p>
+
+          <p></p>
+        </div>
+
+        <div class="tab-pane " id="tabpane5">
+
+
+
+
+          <p>
+            <strong>Search to Add Parts </strong>
+          </p>
+          <hr>
+          <p>
+          </p>
+          <p>
+            You can add more parts to the existing shopping cart by clicking on ‘Search to Add Parts' button. You will be navigated to ‘Search Parts' screen where you can search one or more parts and click on ‘Add to Cart'.</p>
+
+          <p></p>
+        </div>
+
+        <div class="tab-pane " id="tabpane6">
+
+
+
+
+          <p>
+            <strong>Save To List</strong>
+          </p>
+          <hr>
+          <p>
+          </p>
+          <p>
+            Select one or more priced/unpriced/not-orderable parts. Click on ‘Save to List' in order to create a new list or add parts to an existing list.<span style="line-height: 1.4;">Save parts to a list from search summary or Shopping Cart (Order Placement access is required) or Recent history -parts or Recent history- web orders (Order Placement access is required).</span>
+          </p>
+          <p>
+            <span style="font-size:12px;"><span style="font-weight: bold;">Saving to a New List</span><span style="font-weight: bold; line-height: 1.4;"> :</span></span>
+          </p>
+          <p>
+            Select parts which you would like to save to new list by selecting ‘Create a New List', provide a name for the new list you want to create and give access type for list and click on ‘Save to List' button. Select.</p>
+          <p style="margin-left:.5in;">
+            Following are the access types:</p>
+          <p style="margin-left:.5in;">
+            <u style="line-height: 1.4;">Private</u><span style="line-height: 1.4;">:&nbsp; List will be available only to you (i.e. List Owner/Creator). You can access the list from Manage Lists and Perform available Actions</span>
+          </p>
+          <p style="margin-left:.5in;">
+            <u>Public – Company</u>: List is available to you (i.e. List Owner/Creator), it will also be available to other registered users of your company. All registered users of the company can access the list from Manage Lists and perform available
+            actions.</p>
+          <h2>
+                <span style="font-size:12px;">Saving to an Existing List :</span></h2>
+          <h2>
+                <span style="font-size: 12px; font-weight: normal; line-height: 1.4;">&nbsp;Select parts which you would like to save to existing list by selecting ‘Add to an Existing List, on selecting you will be shown all lists available to you; Select the list and click ‘Save'.</span></h2>
+
+          <p></p>
+        </div>
+
+        <div class="tab-pane " id="tabpane7">
+
+
+
+
+          <p>
+            <strong>Delete Parts</strong>
+          </p>
+          <hr>
+          <p>
+          </p>
+          <p>
+            If you no longer wish to place an order for the parts available in the cart, you can delete those parts by clicking on ‘Delete Parts' button.</p>
+
+          <p></p>
+        </div>
+
+      </div>
+    </div>
+    <div style="clear: both; padding: 10px;"></div>
+  </div>
+
+</div>
+
+
+</body>
+
+<script>
+
+if (!String.prototype.trim) {
+  (function(){
+    // Make sure we trim BOM and NBSP
+    var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+    String.prototype.trim = function () {
+      return this.replace(rtrim, "");
+    }
+  })();
+}
+
+
+function searchAndMark(){ 
+	var pattern = '';
+	var unMarkPattern = new RegExp('<mark>|</mark>', "gi");
+	var notAllowedPattern = new RegExp("[<>*]", "gi");
+	
+	var searchText = $('#searchText').val().trim();
+	
+	//unmarking previouse marks\
+	$('.searchtitle').each(function() {	
+		var title=$(this);
+		var body =$($(this).attr('href'));		
+		title.html(title.html().replace(unMarkPattern,""));
+		//body.html(body.html().replace(unMarkPattern, ""));
+		title.parent().removeClass('searchtitle-active'); 
+	});
+	
+	
+	 if (searchText != '' && !notAllowedPattern.test(searchText)){
+		pattern = new RegExp("(" + searchText + ")", "gi"); 		
+		//nodes to be searched
+		  $('.searchtitle').each(function() {			
+			var title=$(this);
+			var body =$($(this).attr('href'));		
+			
+			inspectNode(title);				
+			inspectNode(body);				 
+			
+			 //adding class to title 			
+			if (pattern.test(body.text())) {				
+				title.parent().addClass('searchtitle-active');
+			}			
+			
+		  });	  
+	 }	 
+	 
+	 
+		 //check for the child node that has no leafs but has only text
+	function inspectNode(node) {
+	  //console.log(node);
+		if ($(node).children().size() > 0) {
+		  $(node).children().each(function() {
+			inspectNode($(this));
+		  });
+		} else {
+		  //child node
+		  process(node);
+		}
+	}
+	//search and mark 
+	function process(node) {
+	
+		 var text = $(node).text();		
+		 $(node).html(text.replace(pattern, '<mark>$1</mark>'));	
+	}
+	 
+} 
+  
+</script>
+</html>

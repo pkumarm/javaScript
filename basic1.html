@@ -1,0 +1,79 @@
+<html>
+<body style = "background-color:yellow;">
+
+<form>
+<h1 style="background-color:red;">Find Date Here</h1>
+
+<p>Click Date to display current day, date, and time.</p>
+
+<button type="button" onclick="myDate()">Date</button>
+
+<p id="demo"></p>
+</form>
+<script>
+function myDate() {
+    document.getElementById("demo").innerHTML = Date();
+}
+</script>
+</body>
+<body style = "background-color:blue;">
+
+<form>
+<h1 style="background-color:red;">Addition Of 2 Numbers</h1>
+<br>
+Value A:<input type="text" id="a" name = "value A :"> <div id = "validation_A"></div>
+</br>
+<br>
+Value B:<input type="text" id="b" name = "value B :"><div id = "validation_B"></div>
+</br>
+<button type = "button" onClick="add()">Add</button>
+<br>
+<div id = "msg"></div>
+Value C:<input type="text" id="c" name = "value C :">
+</br>
+</form>
+<script language="JavaScript" type="text/javascript">
+function add(){
+	//alert("add function");
+	console.log('adding.....')
+	a=document.getElementById('a').value;
+	b=document.getElementById('b').value;
+	
+	a=parseInt(a);
+	b=parseInt(b);
+	
+	
+	x = isNaN(a);
+	y = isNaN(b);
+	//alert(x);
+	//alert(y);
+	
+	//alert("above if block");
+	
+	if(x == true || y == true){
+	//alert("in if block");
+	if(x == true && y == true){
+	document.getElementById("validation_A").innerHTML = "Enter a valid A value";
+	document.getElementById("validation_A").style.color = "red";
+	document.getElementById("validation_B").innerHTML = "Enter a valid A value";
+	document.getElementById("validation_B").style.color = "red";
+	}else{
+	if(x == true){
+	document.getElementById("validation_A").innerHTML = "Enter a valid A value";
+	document.getElementById("validation_A").style.color = "red";
+	}else{
+	document.getElementById("validation_B").innerHTML = "Enter a valid B value";
+	document.getElementById("validation_B").style.color = "red";
+	}
+	}
+	
+	}else{
+	document.getElementById("msg").innerHTML = "Addition Of Value A and Value B is :";
+	document.getElementById('c').value = a+b;
+	//alert("end if block");
+	}
+
+}
+</script>
+</body>
+</html> 

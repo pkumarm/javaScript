@@ -1,0 +1,88 @@
+<div class="dropdown">
+
+  <button>Dropdown <a href="http://www.jqueryscript.net/menu/">Menu</a></button>
+
+  <ul id="dropdown-list">
+
+    <li><a href="">Menu Item 1</a></li>
+
+		<ul id="dropdown-list 2 ">
+
+		<li><a href="">Sub Item 1</a></li>
+
+		<li><a href="">Sub Item 2</a></li>
+
+		<li><a href="">Sub Item 3</a></li>
+
+	  </ul>
+
+
+    <li><a href="">Menu Item 3</a></li>
+
+  </ul>
+
+</div>
+<link rel="stylesheet" type="text/css" href="../css/dropdown.css">
+<script src = "../js/jquery-3.1.1.min.js"></script>
+<script>
+var Dropdown = (function($) {
+
+    var $body = $('body'),
+      $dropdown = $body.find('.dropdown'),
+      $trigger = $dropdown.find('button'),
+      $list = $dropdown.find('ul'),
+      $firstLink = $list.find('li:first a'),
+      $lastLink = $list.find('li:last a');
+
+    var init = function() {
+      ariaSetup();
+      bindEvents();
+    }
+
+    var ariaSetup = function() {
+      var listId = $list.attr('id');
+
+      $trigger.attr({
+        'aria-expanded': 'false',
+        'aria-controls': listId
+      });
+
+      $list.attr({
+        'aria-hidden': true
+      });
+    }
+
+    var bindEvents = function() {
+      $trigger.on('click', toggleDropdown);
+
+      $firstLink.on('keydown', function() {
+        if (event.which === 9 && event.shiftKey === false) {
+          return;
+        } else if (event.which === 9 && event.shiftKey === true) {
+          toggleDropdown();
+        }
+      });
+
+      $lastLink.on('keydown', function() {
+        if (event.shiftKey) return;
+        toggleDropdown();
+      });
+    }
+
+    var toggleDropdown = function() {
+      var hidden = $list.attr('aria-hidden') === 'true' ? false : true,
+        expanded = !hidden;
+
+      $trigger.attr('aria-expanded', expanded);
+      $list.attr('aria-hidden', hidden);
+    }
+
+    return {
+      init: init
+    }
+
+  })(jQuery);
+  
+  Dropdown.init();
+
+</script>

@@ -1,0 +1,192 @@
+<html>
+<body background="images/snake_round.jpg">
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.3.min.js"></script>
+	<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<div id = "header">
+<h2>Snake Game</h2>
+<div id = "gameOver"></div>
+<button type = "button" class="btn btn-lg btn-primary" id = "instructions" href="#" role="button" data-toggle="modal" data-target="#myModal">Instructions</button>
+</div>
+<div id = "container">
+<canvas id="myCanvas" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+<span class="scoreTag">Score <div id="score" class="scoreTag"></div></span>
+</div>
+<div class="modal fade" id="myModal"  role="dialog">
+  <div class="modal-dialog" id = "modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h2 class="form-signin-heading">Instructions</h2>
+      </div>
+ 	  <div class="modal-body">
+        <p>instructions .....</p>
+      </div>
+    </div>
+  </div>
+</div>
+<head>
+  <script src="js/jquery-1.11.3.min.js"></script>
+<style>
+	#container{
+		text-align: left;
+		display: flex;
+	}
+	#instructions{
+		width : 150px;
+		height : 50px;
+		font-size: 100%;
+		float:right;
+	}
+	.scoreTag{
+		font-family: cursive;
+		font-style: italic;
+		font-size: 200%;
+		color: red;
+	}
+	#gameOver{
+		font-family: cursive;
+		font-style: italic;
+		font-size: 200%;
+		color: red;
+	}
+</style>
+</head>
+</body>
+<script>
+var canvas=document.getElementById("myCanvas");
+var ctx=canvas.getContext("2d");
+	//Make the canvas occupy the full page
+	var W = window.innerWidth;
+	var H = window.innerHeight;
+	canvas.width = W-550;
+	canvas.height = H-100;
+	body = [];
+	randomFood = {};
+	count = 0;
+	prevDir = '';
+	bodyWidth = 10;
+	bodyHeight = 10;
+	function fillBackgroundColor(){
+		ctx.fillStyle = "black";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+	}
+	function generateBodyPart(b,dir){
+		bodyLength = b.length;
+		var bodyPart = {};
+		if(dir == 'left'){ //snake moving in left direction
+			bodyPart.x = bodyLength==0?10:b[bodyLength-1].x+bodyWidth;
+			bodyPart.y = bodyLength==0?10:b[bodyLength-1].y;		
+		}else if(dir == 'right'){ //snake moving in right direction
+			bodyPart.x = bodyLength==0?10:b[bodyLength-1].x-bodyWidth;
+			bodyPart.y = bodyLength==0?10:b[bodyLength-1].y;		
+		}else if(dir == 'up'){ //snake moving in up direction
+			bodyPart.x = bodyLength==0?10:b[bodyLength-1].x;
+			bodyPart.y = bodyLength==0?10:b[bodyLength-1].y+bodyHeight;		
+		}else if(dir == 'down'){ //snake moving in down direction
+			bodyPart.x = bodyLength==0?10:b[bodyLength-1].x;
+			bodyPart.y = bodyLength==0?10:b[bodyLength-1].y-bodyHeight;		
+		}
+		bodyPart.h = bodyHeight;
+		bodyPart.w = bodyWidth;
+		b.push(bodyPart);
+		drawBodyPart(b);
+	}
+	function drawBodyPart(array){
+			bodyLength = array.length;
+			for(k=0;k<bodyLength;k++){
+				part = array[k];
+				ctx.beginPath();
+				ctx.lineWidth = "2";
+				ctx.strokeStyle = "black";
+				ctx.fillStyle = "white";
+				ctx.rect(part.x, part.y, bodyWidth, bodyHeight);
+				ctx.stroke();
+				ctx.fill();
+			}			
+	}
+	function generateRandomFood(){
+			randomX= Math.round((Math.random()*canvas.width-10)/10)*10;
+			randomY= Math.round((Math.random()*canvas.height-10)/10)*10;
+			randomFood.x = randomX;
+			randomFood.y = randomY
+			drawRandomFood(randomFood);
+	}
+	function drawRandomFood(randomFood){
+			ctx.rect(randomFood.x, randomFood.y, bodyWidth, bodyHeight);
+			ctx.fillStyle = "white";
+			ctx.fill();
+	}
+	function generateScore(){
+		count ++;
+		$('#score').text(count);
+	}
+	function collisionDetection(body,dir){
+			head = body[0];
+			if(randomFood.x == head.x && randomFood.y == head.y){
+				generateRandomFood();
+				generateBodyPart(body,dir);
+				generateScore();
+			}
+			if(head.x <0 || head.x > canvas.width-bodyWidth || head.y <0 || head.y > canvas.height-bodyHeight){
+					clearInterval(prevDir);
+					$('#gameOver').text('Game Over');
+			}
+				for(j=1;j<body.length;j++){
+						if(body[j].x == head.x && body[j].y == head.y){
+							clearInterval(prevDir);
+							$('#gameOver').text('Game Over');
+						}
+					}
+		}	
+	function moveBody(array,dir){	
+			bodyLength = array.length;
+			for(i=0;i<bodyLength;i++){
+				if(i==0){
+					tempObj = $.extend({},array[i]);
+					if(dir == 'left'){
+						array[i].x-=bodyWidth;
+					}else if (dir == 'right'){
+						array[i].x+=bodyWidth;
+					}else if (dir == 'up'){
+						array[i].y-=bodyHeight;
+					}else if (dir == 'down'){
+						array[i].y+=bodyHeight;
+					}
+				}else{
+					newTemp = $.extend({},array[i]); 
+					array[i] = tempObj;
+					tempObj = newTemp;
+				}
+				collisionDetection(array,dir);
+				fillBackgroundColor(); //for canvas, to avoid trailing of snake body
+				drawBodyPart(array); // again draw body after making background color
+				drawRandomFood(randomFood); // again draw random food after making background color
+			}
+	}
+	//on key press
+	var reversemap={37:'left', 39:'right', 38:'up', 40:'down'};
+			$(document).keydown(function(e){
+			var dir = reversemap[e.keyCode];
+				 if(dir=='left'){
+					clearInterval(prevDir);
+					 prevDir = setInterval(function(){moveBody(body,'left');},100);
+				 }if(dir=='right'){
+					clearInterval(prevDir);
+					 prevDir = setInterval(function(){moveBody(body,'right');},100);
+				 }if(dir=='up'){
+					clearInterval(prevDir);
+					 prevDir = setInterval(function(){moveBody(body,'up');},100);
+				 }if(dir=='down'){
+					clearInterval(prevDir);
+					 prevDir = setInterval(function(){moveBody(body,'down');},100);
+				 }
+			});
+	//on page load
+	fillBackgroundColor()
+	generateBodyPart(body,'right');
+	generateRandomFood();
+</script>
+
+</html>

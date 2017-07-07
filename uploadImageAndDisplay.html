@@ -1,0 +1,33 @@
+<html>
+<body>
+<!--<input type ="file" value = "Browse" id = "Browse" >-->
+<input type = "button" id = "Save" value = "Save"  >
+<input type = "text" id = "FileName"  ><br>
+<img src = "C:/Users/Public/Pictures/Sample Pictures/Penguins.jpg"  id = "image">
+<script src="js/jquery-1.11.0.min.js"></script>
+
+<script>
+var a = null;
+$('#Save').click(function(){
+	// a = $('#Browse').val();
+	//alert('a : ' + a );
+	 a = $('#FileName').val();
+	 alert(a);
+	$('#image').attr('src',a)
+});
+
+</script>
+<!--<script src="js/jquery-1.11.0.min.js"></script>-->
+
+<!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>-->
+</body>
+
+<style>
+
+#image{
+left: 200px;
+top: 200px;
+}
+
+</style>
+</html>

@@ -1,0 +1,562 @@
+Advantages of hibernates:
+
+Hibernate supports Inheritance, Associations, Collections
+In hibernate if we save the derived class object,  then its base class object will also be stored into the database, it means hibernate supporting inheritance
+Hibernate supports relationships like One-To-Many,One-To-One, Many-To-Many-to-Many, Many-To-One
+This will also supports collections like List,Set,Map (Only new collections)
+In jdbc all exceptions are checked exceptions, so we must write code in try, catch and throws, but in hibernate we only have Un-checked exceptions, so no need to write try, catch, or no need to write throws.  Actually in hibernate we have the translator which converts checked to Un-checked ;)
+Hibernate has capability to generate primary keys automatically while we are storing the records into database
+Hibernate has its own query language, i.e hibernate query language which is database independent
+So if we change the database, then also our application will works as HQL is database independent
+HQL contains database independent commands
+While we are inserting any record, if we don’t have any particular table in the database, JDBC will rises an error like “View not exist”, and throws exception, but in case of hibernate, if it not found any table in the database this will create the table for us ;)
+Hibernate supports caching mechanism by this, the number of round trips between an application and the database will be reduced, by using this caching technique an application performance will be increased automatically.
+Hibernate supports annotations, apart from XML
+Hibernate provided Dialect classes, so we no need to write sql queries in hibernate, instead we use the methods provided by that API.
+Getting pagination in hibernate is quite simple.
+======================================== 
+Disadvantages of hibernates:
+
+I don’t think there are disadvantages in hibernate
+You know some thing.., Its saying hibernate is little slower than pure JDBC, actually the reason being hibernate used to generate many SQL statements in run time, but i guess this is not the disadvantage :-)
+But there is one major disadvantage, which was boilerplate code issue, actually we need to write same code in several files in the same application, but spring eliminated this
+
+
+In this tutorial am going to explain, why Hibernate came into picture though we have JDBC for connecting to the database, and what is this hibernate frame work first let us see what are the draw backs of JDBC
+=======================================
+Draw Backs of JDBC:
+
+In JDBC, if we open a database connection we need to write in try, and if any exceptions occurred catch block will takers about it, and finally used to close the connections.
+here as a programmer we must close the connection, or we may get a chance to get our of connections message…!
+Actually if we didn’t close the connection in the finally block, then jdbc doesn’t responsible to close that connection.
+In JDBC we need to write Sql commands in various places, after the program has created if the table structure is modified then the JDBC program doesn’t work, again we need to modify and compile and re-deploy required, which is tedious.
+JDBC used to generate database related error codes if an exception will occurs, but java programmers are unknown about this error codes right.
+In the Enterprise applications, the data flow with in an application from class to class will be in the form of objects, but while storing data finally in a database using JDBC then that object will be converted into text.  Because JDBC doesn’t transfer objects directly.
+In order to overcome above problems,  Hibernate came into picture..!
+What is Hibernate:
+
+Hibernate is the ORM tool given to transfer the data between a java (object) application and a database (Relational) in the form of the objects.  Hibernate is the open source light weight tool given by Gavin King, actually JBoss server is also created by this person only.
+Hibernate is a non-invasive framework,  means it wont forces the programmers to extend/implement any class/interface, and in hibernate we have all POJO classes so its light weight.
+Hibernate can runs with in or with out server, i mean it will suitable for all types of java applications (stand alone or desktop or any servlets bla bla.)
+Hibernate is purely for persistence (to store/retrieve data from Database).	
+
+======================================
+
+Syntax Of Mapping xml:
+
+<hibernate-mapping>
+ 
+<class name="POJO class name" table="table name in database">
+<id name="variable name" column="column name in database" type="java/hibernate type" />
+<property name="variable1 name" column="column name in database" type="java/hibernate type" />
+<property name="variable2 name" column="column name in database" type="java/hibernate type" />
+</class>
+ 
+</hibernate-mapping>
+
+
+
+
+===================================
+Syntax Of Configuration xml:
+
+<hibernate-configuration>
+<session-factory>
+ 
+<!-- Related to the connection START -->
+<property name="connection.driver_class">Driver Class Name </property>
+<property name="connection.url">URL </property>
+<property name="connection.user">user </property>
+<property name="connection.password">password</property>
+<!-- Related to the connection END -->
+ 
+<!-- Related to hibernate properties START -->
+<property name="show_sql">true/false</property>
+<property name="dialet">Database dialet class</property>
+<property name="hbm2ddl.auto">create/update or what ever</property>
+<!-- Related to hibernate properties END-->
+ 
+<!-- Related to mapping START-->
+<mapping resource="hbm file 1 name .xml" / >
+<mapping resource="hbm file 2 name .xml" / >
+<!-- Related to the mapping END -->
+ 
+</session-factory>
+</hibernate-configuration>
+
+====================================
+Now we are going to see the main advantages of wrapper types over primitives in the hibernates, will see with an example
+Files required to execute this program..
+Product.java (My POJO class)
+Product.hbm.xml  (Xml mapping file )
+hibernate.cfg.xml  (Xml configuration file)
+ClientProgram.java (java file to write our hibernate logic)
+Normally Product.hbm.xml, hibernate.cfg.xml are same as first program hibernate hello world program(Saving an object), actually mapping files almost same for all the programs, but i will specify if we need to change these files right..,
+First we will see the output if we use the primitives_______
+Product.java:
+package str;
+ 
+public class Product{
+ 
+    private int productId;
+    private String proName;
+    private double price;
+ 
+    public void setProductId(int productId)
+    {
+        this.productId = productId;
+    }
+    public int getProductId()
+    {
+        return productId;
+    }
+ 
+    public void setProName(String proName)
+    {
+        this.proName = proName;
+    }
+    public String getProName()
+    {
+        return proName;
+    }
+ 
+    public void setPrice(double price)
+    {
+        this.price = price;
+    }
+    public double getPrice()
+    {
+        return price;
+    }
+}
+Product.hbm.xml
+
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+<class name="str.Product" table="products">
+ 
+<id name="productId" column="pid"  />
+<property name="proName" column="pname" length="10"/>
+<property name="price"/>
+ 
+</class>
+</hibernate-mapping>
+hibernate.cfg.xml
+
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+<session-factory>
+<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver
+</property>
+<property name="connection.url">jdbc:oracle:thin:@www.java4s.com:1521:XE</property>
+<property name="connection.username">system</property>
+<property name="connection.password">admin</property>
+ 
+<property name="dialect">org.hibernate.dialect.OracleDialect</property>
+<property name="show_sql">true</property>
+<property name="hbm2ddl.auto">update</property>
+ 
+<mapping resource="Product.hbm.xml"></mapping>
+</session-factory>
+</hibernate-configuration>
+ClientProgram.java:
+
+package str;
+ 
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+ 
+public class ClientForSave { 
+ 
+    public static void main(String[] args)
+    {
+ 
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml"); 
+ 
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Product p=new Product(); 
+ 
+        p.setProductId(105);
+        p.setProName("watch");
+        //p.setPrice(35000);       see am not setting any value to Price
+ 
+        Transaction tx = session.beginTransaction();
+        session.save(p);
+        System.out.println("Object saved successfully.....!!");
+        tx.commit();
+        session.close();
+        factory.close();
+    }
+ 
+}
+Notes:
+See in the Product.java, line numbers 5,6,7 am using primitives just like previous programs
+In ClientProgram.java, i have been written setters for productId, proName, but i have not written setter for price
+But once you execute this program in the database it will saves the price as 0(zero), so misunderstanding of data will happen like watch price is zero :-) [ free of cost hah ]
+ 
+Eclipse Output
+
+	
+ 
+In the database
+
+	
+We will see the output if we use the Wrapper types_______
+Product.java:
+
+
+package str;
+ 
+public class Product{
+ 
+     Integer productId;
+     String proName;
+     Integer price;
+ 
+    public Integer getProductId() {
+        return productId;
+    }
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+    public String getProName() {
+        return proName;
+    }
+    public void setProName(String proName) {
+        this.proName = proName;
+    }
+    public Integer getPrice() {
+        return price;
+    }
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+ 
+}
+ClientProgram.java:
+
+
+package str;
+ 
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+ 
+public class ClientForSave { 
+ 
+    public static void main(String[] args)
+    {
+ 
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml"); 
+ 
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Product p=new Product(); 
+ 
+        p.setProductId(106);
+        p.setProName("watch");
+        //p.setPrice(35000);       see am not setting any value to Price
+ 
+        Transaction tx = session.beginTransaction();
+        session.save(p);
+        System.out.println("Object saved successfully.....!!");
+        tx.commit();
+        session.close();
+        factory.close();
+    }
+ 
+}
+Eclipse output
+
+	
+In the database
+================
+Notes:
+See in this case if we forget to write the setter for the price, in the database its not inserting any thing [ actually it has to insert NULL value, as of now leave it ],  no way of data misunderstanding.
+But in the first case (primitive types) it inserted zero, see the above screen short
+Hope you understand the importance and difference between wrapper types and primitives in hibernates.
+===============================
+Actually our POJO class object having 3 states like…
+Transient state
+Persistent state
+Detached state
+ 
+Transient & Persistent states:
+
+When ever an object of a pojo class is created then it will be in the Transient state
+When the object is in a Transient state it doesn’t represent any row of the database, i mean not associated with any Session object, if we speak more we can say no relation with the database its just an normal object
+If we modify the data of a pojo class object, when it is in transient state then it doesn’t effect on the database table
+When the object is in persistent state, then it represent one row of the database, if the object is in persistent state then it is associated with the unique Session
+if we want to move an object from persistent to detached state, we need to do either closing that session or need to clear the cache of the session
+if we want to move an object from persistent state into transient state then we need to delete that object permanently from the database
+ 
+Example____ ClientProgram.java
+
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+ 
+public class ClientProgram { 
+ 
+    public static void main(String[] args)
+    {
+ 
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml"); 
+ 
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+ 
+         // Transient state_____start
+        Product p=new Product();
+        p.setProductId(101);
+        p.setProName("iPhone");
+        p.setPrice(25000);
+         // Transient state_____end
+ 
+         // Persistent state_____start
+        Transaction tx = session.beginTransaction();
+        session.save(p);
+        System.out.println("Object saved successfully.....!!");
+        tx.commit();
+         // Persistent state_____end  
+ 
+        session.close();
+        factory.close();
+    }
+ 
+}
+
+Note:
+see the above client program, line numbers 16 to 19 we just loaded the object and called the corresponding setter methods, its not related to the database row
+if you see, line number 24 we called save method in the Session Interface, means the object is now having the relation with the database
+if we want to convert the object from Transient state to Persistentstate we can do in 2 ways
+By saving that object like above
+By loading object from database
+If we do any modifications all the changes will first applied to the object in session cache only (Let__ we do the modifications 5 times, then 5 times we need to save the changes into the database right, which means number of round trips from our application to database will be increased, Actually if we load an object from the database, first it will saves in the cache-memory so if we do any number of changes all will be effected at cache level only and finally we can call save or update method so with the single call of save or update method the data will be saved into the database.
+If we want to save an object into database then we need to call any one of the following 3 methods
+save()
+persist()
+saveOrUpdate()
+i will explain about persist, saveOrUpdate methods later….
+If we want to load an object from database, then we need to call either load() or get() methods
+Transient:
+
+One newly created object,with out having any relation with the database, means never persistent, not associated with any Session object
+Persistent:
+
+Having the relation with the database, associated with a unique Session object
+Detached:
+
+previously having relation with the database [persistent ], now not associated with any Session
+see the next sessions for the better understanding of the life cycle states of pojo class object(s) the hibernate
+
+=====================================
+
+Now we will see, how to convert the detached state object into Persistent state again…,
+As usual hibernate configuration, mapping XML are same and pojo class too, if you want just refer Hello World Program
+
+ClientLogicProgram.java:
+
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+ 
+public class ClientLogicProgram {
+ 
+    public static void main(String... args)
+    {
+ 
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+ 
+        SessionFactory factory = cfg.buildSessionFactory();
+ 
+        Session session1 = factory.openSession();
+ 
+         Product p=null;          //Transient state..
+         Object o=session1.get(Product.class, new Integer(1001));
+         p=(Product)o;           //now p is in Persistent state..
+ 
+        session1.close();
+ 
+        p.setPrice(36000);            // p is in Detached state
+ 
+        Session session2=factory.openSession();
+ 
+         Transaction tx=session2.beginTransaction();
+            session2.update(p);      // now p reached to Persistent state
+         tx.commit();
+ 
+        session2.close();
+ 
+        factory.close();
+}
+}
+Notes:
+We have opened the session1 at line number 14 and closed at line number 20, see i have been loaded the Product class object by using get(-,-) method
+Remember get() method always returns the super class object (Object)
+so i typecast into my pojo class object type, so now we can use print any value from this object so its in the Persistent state
+see line number 22,  am trying to change the Price,  but it wont effect the database because its not in the session cache so i need to take one more session to update this value in the database, so for that reason i took one more session from line numbers 24 – 30
+Gun short point is, things related to database must go with in the session only that’s it
+
+// this section is not comming.... seperate tables for subclasses are not created
+
+
+This is also just like previous example, but some changes are there, in table per class hierarchy all the data was saved in a single table but here,
+x number of classes = x number of tables in the database
+If we save the CreditCard class object, then first hibernate will saves the data related to super class object into the super class related table in the database and then CreditCard object data in CreditCard related table in the database, so first base class data will be saved
+Required files_
+Payment.java (Base class)
+CreditCard.java (Derived class)
+Cheque.java (Derived class)
+ClientForSave.java (for our logic)
+Payment.hbm.xml
+hibernate.cfg.xml
+All are same but mapping file is different than previous example..
+Payment.java:
+package str;
+ 
+public class Payment{
+ 
+    private int paymentId;
+    private double amount;
+ 
+    public int getPaymentId() {
+        return paymentId;
+    }
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
+    }
+    public double getAmount() {
+        return amount;
+    }
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }     
+}
+CreditCard.java:
+package str;
+public class CreditCard extends Payment{
+ 
+    private String CreditCardType;
+ 
+    public String getCreditCardType() {
+        return CreditCardType;
+    }
+ 
+    public void setCreditCardType(String creditCardType) {
+        CreditCardType = creditCardType;
+    }
+ 
+}
+Cheque.java:
+package str;
+public class Cheque extends Payment{
+ 
+    private String ChequeType;
+ 
+    public String getChequeType() {
+        return ChequeType;
+    }
+ 
+    public void setChequeType(String chequeType) {
+        ChequeType = chequeType;
+    }
+}
+ClientForSave.java
+package str;
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+ 
+public class ClientForSave { 
+ 
+    public static void main(String[] args)
+    {
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml"); 
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        CreditCard c=new CreditCard();
+        c.setPaymentId(10);
+        c.setAmount(2500);
+        c.setCreditCardType("Visa");
+        Cheque c1=new Cheque();
+        c1.setPaymentId(11);
+        c1.setAmount(2600);
+        c1.setChequeType("ICICI");
+        Transaction tx = session.beginTransaction();
+        session.save(c);
+        session.save(c1);
+        System.out.println("Object saved successfully.....!!");
+        tx.commit();
+        session.close();
+        factory.close();
+    }
+}
+
+Payment.hbm.xml:
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ 
+<class name="str.Payment" table="PAYMENT">
+ 
+<id name="paymentId" column="pid" />
+<property name="amount" column="amt" />
+ 
+<joined-subclass name="str.CreditCard" table="CreditCard">
+<key column="dummy1" />
+<property name="CreditCardType" column="cctype" length="10" />
+</joined-subclass>
+ 
+<joined-subclass name="str.Cheque" table="Cheque">
+<key column="dummy2" />
+<property name="ChequeType" column="cqtype" length="10" />
+</joined-subclass>
+ 
+</class>
+</hibernate-mapping>
+ 
+hibernate.cfg.xml:
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+<session-factory>
+<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver
+</property>
+<property name="connection.url">jdbc:oracle:thin:@www.java4s.com:1521:XE</property>
+<property name="connection.username">system</property>
+<property name="connection.password">admin</property>
+ 
+<property name="dialect">org.hibernate.dialect.OracleDialect</property>
+<property name="show_sql">true</property>
+<property name="hbm2ddl.auto">update</property>
+ 
+<mapping resource="Payment.hbm.xml" />
+ 
+</session-factory>
+</hibernate-configuration>
+Eclipse output
+
+	
+In the database
+
+	
+Notes:
+In the mapping file,  <key –> element is because,  once we save the derived class object, then hibernate will first save the baseclass object then derived class object right ..!, so at the time of saving the derived class object hibernate will copy the primary key value of the base class into the corresponding derived class, see in the above output 10 copied into dummy1 column of CreditCard table and 11 copied into Dummy2 column of the cheque table
+that’s it friends, nothing to explain….   ;)

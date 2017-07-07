@@ -1,0 +1,240 @@
+<style>
+.mypopup{
+background: rgb(211, 213, 223);
+width: 395px;
+position: absolute;
+left: 609px;
+top: 40px;
+padding: 10px;
+box-shadow: 5px 5px 5px;
+display: none;
+height: 329px;
+
+}
+#addButton{
+position: absolute;
+top: auto; 
+bottom:2px;
+}
+#cancelButton{
+position: absolute;
+top: auto; 
+bottom:2px;
+left: 142px; 
+}
+#resetButton{
+position: absolute;
+top: auto; 
+top: auto; 
+bottom:2px;
+right: 10px; 
+}
+#address{
+height: 50px;
+width: 150px;
+}
+
+td,th {
+background: rgb(231, 236, 241);
+padding: 5px;
+}
+.icon{
+width:100px;
+}
+
+body{
+background-color: rgb(0, 255, 216);
+}
+</style>
+<script src="js/jquery-1.11.0.min.js"></script> 
+ 
+<input type ="button" value="Add User" onclick="addUserPopup()" >
+ 
+ 
+ 
+<div id="addUser" class="mypopup">
+<table> <tr><td>Name:<input type="text" id="userName" required= "true"></td>
+			<td>Age:<input type="text" id="age"></td></tr>
+		<tr><td>EmpId:<input type = "text" id="empId" name= "EmpId" readonly></td>
+		    <td>Experience: <select name="dropdown" id = "exp">
+								<option value="< 3 years"> < 3 years</option>
+								<option value="3-5 years">3-5 years</option>
+								<option value="5-7 years">5-7 years</option>
+								<option value="7-10 years">7-10 years</option>
+								<option value="10 years"> >10 years</option>
+							</select>
+		    </td>
+		</tr>
+				Gender: <tr> <th align :"left" > Gender :</th><td> Male<input type = "radio" name = "Gender" id = "male" value = "male" > <br>
+																   Female <input type = "radio" name = "Gender" id = "female" value = "female" > </td>  
+				
+					
+				</tr>
+			
+			<tr><td><textarea name = "address" id = "address" >Address:</textarea></td></tr>
+			
+		  
+</table>         
+      
+                <input type="button" id = "addButton" value="Add" onclick="addUser();">
+                <input type="button" id = "cancelButton" value="Cancel" onclick="cancleAddUser();">
+				<input type="button" id = "resetButton" value="Reset" onclick="resetValues();">
+</div>
+ 
+ 
+ 
+<div id="deleteUser" class="mypopup"></div>
+ 
+ 
+ 
+<table>
+<th><tr><td>EmpId</td><td>Name</td><td>Age</td><td>Experience</td><td>Gender</td><td>Address</td><td>Icon</td>
+
+<td>Action</td></tr></th>
+     <tbody id="usersTable"></tbody>
+</table>
+ 
+ 
+ 
+<script>
+
+$('#userName,#address,#age').focus(
+	function(){
+		$(this).css({background:'yellow'})
+	}
+).blur(
+	function(){
+		$(this).css({background:'white'})
+	}
+)
+                function addUserPopup(){
+                               // var addUserDiv = document.getElementById('addUser');
+                               // addUserDiv.style.display = 'block';
+							   $('#addUser').show(500)
+               
+                }
+                function addUser(){
+                                var userName = document.getElementById('userName').value;
+                                var age = document.getElementById('age').value;
+								var gender1;
+								var isMale = document.getElementById("male").checked;
+								if ( isMale = true){
+									//alert("male checked");
+									gender1 = "male";
+								}else {
+									//alert("Female checked");
+									gender1 = "female";
+								}
+								var experience = document.getElementById('exp').value;
+								var address = document.getElementById('address').value;
+								var EId = document.getElementById('empId').value;
+								
+								//alert("empId" + EId);
+								
+                                var user = {emp:EId, name:userName, age:age, exp:experience, gender:gender1, add:address};
+                                users.push(user);
+                                
+								
+								document.getElementById('userName').value = "";
+								document.getElementById('age').value = "";
+								document.getElementById('empId').value = "";
+								document.getElementById('exp').value = "";				
+								document.getElementById('male').checked = "false";
+								document.getElementById('female').checked = "false";
+								document.getElementById('address').value = "";
+								
+								renderUsersTable();
+                                saveToLocal();
+								loadFromLocal();
+								
+                }
+                function cancleAddUser(){
+                                //var addUserDiv = document.getElementById('addUser');
+                               // addUserDiv.style.display = 'none';
+							    $('#addUser').hide(500)
+                }
+                function renderUsersTable(){
+                                var usersTable = document.getElementById('usersTable');
+                                var html='';
+                                for(var key in users){
+									var user = users[key];
+									//alert("user.emp" + user.emp);
+									//console.log(user);
+									var EId = document.getElementById('empId').value;
+									var uniqueId = user.emp;
+									//alert('uniqueId'+uniqueId);
+                                    html+='<tr><td>'+user.emp+'</td>';
+									html+='<td>'+user.name+'</td><td>'+user.age+'</td><td>'+user.exp+'</td><td>'+user.gender+'</td><td>'+user.add+'</td>';
+									html+='<td><img src="'+user.icon+'" class="icon"></td>';
+									html+='<td>'+'<input type ="button"  id= "delete" name = "delete"  value = delete_'+user.emp+' onclick = "deleteUser('+user.emp+')" >'+'</td></tr>';         
+								}
+								usersTable.innerHTML = html;
+								document.getElementById('delete').val = EId;
+									//alert(document.getElementById('delete').val +user.emp );	
+
+
+								//console.log(users);
+                }
+users=[];
+
+                function saveToLocal(){
+                                localStorage.users=JSON.stringify(users)
+                }
+   
+				function loadFromLocal(){
+                                if(localStorage.users){
+                                                users = JSON.parse(localStorage.users);             
+                                }
+						tempUsers=[];
+					tempUsers = users
+					tempUsers.sort("emp");
+				a = tempUsers.length-1;
+
+   				 document.getElementById('empId').value = parseInt(tempUsers[a].emp)+ 1;
+										  
+                }
+				
+				function resetValues(){
+				document.getElementById('userName').value = "";
+				document.getElementById('age').value = "";
+				document.getElementById('empId').value = "";
+				document.getElementById('exp').value = "";
+				document.getElementById('male').checked = "false";
+				document.getElementById('female').checked = "false";
+				document.getElementById('address').value = "";
+				}
+		
+				
+				
+				
+				function deleteUser(emp){
+				//console.log(emp)
+				//var employeeId = emp;
+				//users.splice(employeeId-1,1);
+				//console.log(users.pop('emp'));
+				for(var key in users){
+				//var user = users[key];
+					//console.log(key);
+				//	getUserObjectsArray();
+					console.log(users[key].emp,"----------",emp);
+				if(users[key].emp == emp && emp != 0){
+					//console.log(key);
+					//console.log(tempUser);
+					var index = (key);
+					console.log("--------",index);
+					users.splice(index,1);
+				emp=0;
+				
+				}
+				
+				//console.log(key+"---");
+				saveToLocal();
+				loadFromLocal();
+				renderUsersTable();
+				}
+				}
+				 
+				
+loadFromLocal();
+renderUsersTable();    
+</script>

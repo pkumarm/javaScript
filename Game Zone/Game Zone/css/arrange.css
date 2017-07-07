@@ -1,0 +1,36 @@
+ #container{
+	background-color: rgb(160, 222, 241);
+	padding: 35px;
+	text-align: center;
+  }
+  #box{
+	width:100%;
+	padding: 80px;
+  }
+  .brick{
+	height: 100px;
+	padding: 30px;
+	text-align: center;
+	font-size: 40px;
+	font-family: monospace;
+	box-shadow: 5px 5px 5px;
+	}
+  .cell{
+		width: 100px;
+   }
+   #moves{
+		font-family: cursive;
+		font-style: italic;
+		font-size: 200%;
+		color: blue;
+  }
+ #isGameComplete{
+	font-family: cursive;
+	font-style: italic;
+	font-size: 250%;
+	color: green;
+	width:100%;
+ }
+ #scoreContainer{
+		background-color:white;
+ }
