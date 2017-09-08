@@ -1,0 +1,62 @@
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div id="ballonsDiv">
+
+
+</div>
+
+
+</html>
+
+
+
+<script>
+$(document).ready(function(){
+	var ballonsValue = [5,0,10,3,2,0,4];
+	createBallons(ballonsValue);
+	createRandomStart(ballonsValue);
+	//start(1);
+})
+function start(ballonID){
+	var roof = $( window ).height();
+	//console.log(roof);
+	$("#"+ballonID).css('bottom','10');
+	$("#"+ballonID).animate({bottom: roof},6000,function(){
+		start(ballonID);
+	});
+}
+function createBallons(ballonsArray){
+	var ballonsCount = ballonsArray.length;
+	//console.log(ballonsCount);
+	for(i=1;i<=ballonsCount;i++){
+		$('#ballonsDiv').append("<div class='ballons' id="+i+" style='left: "+i*100+" '></div>")
+	}
+}
+function createRandomStart(ballonArray){
+	var tempBallonArray = ballonArray;
+	for(i=1;i<=tempBallonArray.length;i++){
+		var position = Math.floor(Math.random()*tempBallonArray.length);
+		console.log(position);
+		tempBallonArray.splice(position,1);
+		start(position+1);
+	}
+}
+
+</script>
+<style>
+.ballons{
+	height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    position: absolute;
+    border-radius: 25px;
+	bottom: 10px;
+}
+</style>
