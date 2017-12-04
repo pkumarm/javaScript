@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Bar Chart</title>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script> 
+<script type="text/javascript">
+window.onload = function() {
+	$("#chartContainer").CanvasJSChart({ 
+		title: { 
+			text: "Top Companies By Revenue - 2013" 
+		}, 
+		axisX: { 
+			title: "In Billions (USD)" 
+		}, 
+		data: [ 
+		{ 
+			type: "bar", 
+			toolTipContent: "{label}: US$ {y} billion",
+			dataPoints: [ 
+				{ label: "Apple",             y: 198  }, 
+				{ label: "Toyota",            y: 250.1}, 
+				{ label: "ConocoPhillips",    y: 248  }, 
+				{ label: "Chevron",           y: 270.1}, 
+				{ label: "Sinopec",           y: 290.5}, 
+				{ label: "Vitol",             y: 320.2}, 
+				{ label: "British Petroleum", y: 410  }, 
+				{ label: "WalMart",           y: 464  }, 
+				{ label: "Royal Dutch Shell", y: 492  }, 
+				{ label: "Exxon Mobil",       y: 502.3} 
+			] 
+		} 
+		] 
+	});   
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="width: 100%; height: 300px"></div>
+</body>
+</html>

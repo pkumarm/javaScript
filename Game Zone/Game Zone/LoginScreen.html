@@ -1,0 +1,162 @@
+<html>
+<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div id="container">
+
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+		<div id='loginDiv' class="userActionSection login" onclick="moduleClick('login');">login</div>
+		<div id='regDiv' class="userActionSection registration" onclick="moduleClick('registration');">Registration</div>
+</div>
+<div class="col-sm-3"></div>
+
+
+</div>
+
+<style>
+#container{
+	background:black;
+	height: 100%;
+	color : white;
+	font-family: sans-serif;
+    font-size: 20px;
+	padding-top: 15%;
+	position: relative;
+}
+#loginDiv,#regDiv{
+    display : inline;
+    position: absolute;
+	border:1px solid white;
+	padding: 15%;
+	width: 16em;
+}
+
+
+@-webkit-keyframes backToFrontBlock {
+
+0% {
+/*-webkit-transform: translateZ(-194px) rotateY(0deg);*/
+	left: 45%;
+    padding: 8% !important;
+    margin-top: 6%;
+    width: 10em !important;
+}
+
+50% {
+/*-webkit-transform: translateZ(-194px) rotateX(90deg);*/
+	left: 22%;
+    padding: 12% !important;
+    margin-top: 3%;
+    width: 13em !important;
+}
+100% {
+	left: 2%;
+    padding: 15% !important;
+    margin-top: 0%;
+    width: 16em !important;
+	/*-webkit-animation-play-state:paused;*/
+}
+}
+@-webkit-keyframes frontToBackBlock {
+
+0% {
+/*-webkit-transform: translateZ(-194px) rotateY(0deg);*/
+	left: 2%;
+    padding: 15% !important;
+    margin-top: 0%;
+    width: 16em !important;
+}
+
+50% {
+/*-webkit-transform: translateZ(-194px) rotateX(90deg);*/
+	left: 22%;
+    padding: 12% !important;
+    margin-top: 3%;
+    width: 13em !important;
+}
+100% {
+	left: 45%;
+    padding: 8% !important;
+    margin-top: 6%;
+    width: 10em !important;
+	/*-webkit-animation-play-state:paused;*/
+	}
+}
+
+
+
+
+div.login {
+	left: 45%;
+    padding: 8% !important;
+    margin-top: 6%;
+    width: 10em !important;
+}
+div.registration{
+	left: 2%;
+    padding: 15% !important;
+    margin-top: 0%;
+    width: 16em !important;
+}
+
+div.backToFront{
+		-webkit-animation: backToFrontBlock 3s ease-in-out 2s 1 normal;
+}
+
+div.frontToBack{
+		-webkit-animation: frontToBackBlock 3s ease-in-out 2s 1 normal;
+}
+
+
+</style>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+
+});
+	function moduleClick(module){
+	console.log(module);
+		if(module === "login"){
+			console.log($(this).hasClass("login"));
+			if($('#loginDiv').hasClass("login")){
+				$('#loginDiv').removeClass('login');
+			}if($('#regDiv').hasClass("registration")){
+				$('#regDiv').removeClass('registration');
+			}if($('#loginDiv').hasClass('backToFront')){
+					$('#loginDiv').removeClass('backToFront');
+					$('#loginDiv').addClass('frontToBack');
+					$('#regDiv').removeClass('frontToBack');
+					$('#regDiv').addClass('backToFront');
+					
+			}else{
+					$('#loginDiv').removeClass('frontToBack');
+					$('#loginDiv').addClass('backToFront');
+					$('#regDiv').removeClass('backToFront');
+					$('#regDiv').addClass('frontToBack');
+					
+			}
+			console.log('login click');
+		}else{
+			if($('#loginDiv').hasClass("login")){
+				$('#loginDiv').removeClass('login');
+			}if($('#regDiv').hasClass("registration")){
+				$('#regDiv').removeClass('registration');
+			}if($('#regDiv').hasClass('backToFront')){
+					$('#regDiv').removeClass('backToFront');
+					$('#regDiv').addClass('frontToBack');
+					$('#loginDiv').removeClass('frontToBack');
+					$('#loginDiv').addClass('backToFront');
+			}else{
+					$('#regDiv').removeClass('frontToBack');
+					$('#regDiv').addClass('backToFront');
+					$('#loginDiv').removeClass('backToFront');
+					$('#loginDiv').addClass('frontToBack');
+			}
+			console.log('registration click');
+		}
+		
+	}
+
+</script>
+</html>

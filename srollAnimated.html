@@ -1,0 +1,245 @@
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="alton-master/jquery.alton.min.js"></script>
+ <body class="pageWrapper">
+	
+		<section class="pane-container">
+			<div class="pane paneOne">
+				<div class="content-container">
+					<div class="wrapper lightText">
+						<div class="content left">
+							<h1>Hi. I'm Alton. Let's be Friends.</h1>
+							<h2>I'm a nifty jquery plugin for full page scrolling presentations on the web. Want to see what i can do? Scroll down!</h2>
+						</div>
+						<div class="image-container right">
+							<img src="../imgs/logo.svg" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pane paneTwo">
+				<div class="content-container" style="background-image: url(../imgs/blurred-bg.jpg); background-size: cover;">
+					<div class="wrapper lightText">
+						<div class="content right">
+							<h1>100% Full-Screen Scrolling.</h1>
+
+							<p>Make your web experience an impactful one with full-screen scrolling. Alton is great for presenting: galleries of work; features & benefits of software or services; or really anything else you can put your mind to.</p>
+						</div>
+						<div class="image-container left">
+							<img src="../imgs/screen-graphic.svg" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pane paneThree">
+				<div class="content-container">
+					<div class="wrapper darkText">
+						<div class="content left">
+							<h1>Multiple Options Out Of The Box.</h1>
+							<p>You can apply Alton to all parent containers, as we’ve done here. Plus, you can choose to only apply it to the hero section using <a href="/alton/heroscroll">HeroScroll</a>, or use a nifty feature we built in called <a href="/alton/bookend">Bookend</a> to allow for independent starting & finishing containers. Plus, the whole plugin is easy to implement, lightweight, and has fallbacks for mobile.</p>
+						</div>
+						<div class="image-container right">
+							<img src="../imgs/options-graphic.svg" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pane paneFour">
+				<div class="content-container">
+					<div class="wrapper lightText">
+						<div class="content center">
+							<h1>Download Links</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+    </body>
+
+	<script>
+		(function($) {
+			$(document).ready(function() {
+			    $(document).alton({
+			        fullSlideContainer: 'pane-container',
+			        singleSlideClass: 'pane',
+			        useSlideNumbers: true,
+			        slideNumbersBorderColor: '#fff',
+			        slideNumbersColor: 'transparent',
+			        bodyContainer: 'pageWrapper',
+			    });
+			});
+		})(jQuery);
+	</script>
+<style>
+html {
+	background: white;
+}
+body {
+	margin: 0;
+	font-size: 1.25em;
+}
+.pane {
+	padding: 15px!important;
+}
+
+
+.pane .content-container {
+	height: 100%;
+	width: auto;
+}
+.pane .wrapper {
+	margin: 0 15px;
+}
+.paneOne .content-container{
+	background: rgba(220,36,36,1);
+	background: -moz-linear-gradient(-45deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(220,36,36,1)), color-stop(100%, rgba(53,0,96,1)));
+	background: -webkit-linear-gradient(-45deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	background: -o-linear-gradient(-45deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	background: -ms-linear-gradient(-45deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	background: linear-gradient(135deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc2424', endColorstr='#350060', GradientType=1 );
+}
+.paneTwo .content-container{
+	background:#000000;
+}
+.paneThree .content-container{
+	background:#f4f2ef;
+}
+.paneFour .content-container{
+	background: rgba(220,36,36,1);
+	background: -moz-linear-gradient(-45deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(220,36,36,1)), color-stop(100%, rgba(53,0,96,1)));
+	background: -webkit-linear-gradient(-45deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	background: -o-linear-gradient(-45deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	background: -ms-linear-gradient(-45deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	background: linear-gradient(135deg, rgba(220,36,36,1) 0%, rgba(53,0,96,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc2424', endColorstr='#350060', GradientType=1 );
+}
+.content-container {
+	background: grey;
+}
+
+.content-container {
+	background: grey;
+}
+h1 {
+  	font-family: "brandon-grotesque",sans-serif;
+  	line-height: 1.05em;
+  	font-size: 3em;
+  	font-weight: bolder;
+  	margin: 0;
+  	text-transform: uppercase;
+  	padding-bottom: 30px;
+}
+h2 {
+  	font-family: "brandon-grotesque",sans-serif;
+  	line-height: 1.25em;
+  	font-size: 1.15em;
+  	font-weight: bolder;
+  	margin: 0;
+  	text-transform: uppercase;
+}
+p, a {
+	font-family: "freight-text-pro",sans-serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: 500;
+	letter-spacing: 1px;
+	line-height: 1.25em;
+	margin-bottom: 0;
+}
+.wrapper {
+	max-width: 1170px;
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	padding: 40px;
+	-webkit-transform: translateY(-50%);
+	   -moz-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	     -o-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+.lightText h1, .lightText h2 {
+	color: white; 
+}
+.lightText p {
+	color: rgba(255, 255, 255, 0.8)!important;
+}
+.darkText h1 {
+	color: rgba(53,0,96,1);
+}
+.darkText p {
+	color: rgba(53,0,96,1);
+}
+.darkText a {
+	color: rgba(220,36,36,1);
+	text-decoration: none;
+	border-bottom: 1px solid;
+	-webkit-transition: all .25s ease-in-out;
+	   -moz-transition: all .25s ease-in-out;
+	    -ms-transition: all .25s ease-in-out;
+	     -o-transition: all .25s ease-in-out;
+	        transition: all .25s ease-in-out;
+}
+.darkText a:hover {
+	color: rgba(220,36,36,0.6);
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+.image-container {
+    top: 50%;
+    max-width: 47%;
+}
+
+.image-container img {
+	max-width: 100%;
+}
+
+.content {
+	max-width: 50%;
+	-webkit-transform: translateY(-50%);
+	   -moz-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	     -o-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+
+.content.left {
+	float: left;
+	position: absolute;
+	left: 0;
+}
+.image-container.right {
+	float: right;
+	position: absolute;
+	right: 0;
+}
+.content.right {
+	float: right;
+	position: absolute;
+	right: 0;
+}
+.image-container.left {
+	float: left;
+	position: absolute;
+	left: 0;
+}
+.image-container {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+       -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+         -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+}
+
+
+</style>
+</body>
+	
