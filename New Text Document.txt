@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+</style>
+</head>
+<body>
+
+<h3>FAQ's</h3>
+
+<button class="accordion">How to contact admin team?</button>
+<div class="panel">
+
+	<h4>Please communicate the admin team based on your working location:</h4>
+	<ul>
+		<li>Hyderabad : <a href="mailto:adminsupport-hyd@trianz.com">adminsupport-hyd@trianz.com</a></li>
+		<li>Bangalore : <a href="mailto:admin.Helpdesk@trianz.com">admin.Helpdesk@trianz.com </a></li>
+		<li>Chennai : <a href="mailto:adminsupport-chennai@trianz.com">adminsupport-chennai@trianz.com</a></li>
+	</ul>
+
+</div>
+
+<button class="accordion">Do you have any tools where I can raise my queries? </button>
+<div class="panel">
+ 
+	<ul>
+		<li>For all HR queries -  <a href="http://helpdesk.trianz.com/">HR Queries</a></li>
+		<li>For all IT queries  <a href="http://itservicedesk.trianz.com/otrs/customer.pl?Action=Logout">IT Queries</a></li>
+		<li>For all RMA queries <a href="http://helpdesk.trianz.com/">RMA Queries </a></li>
+	</ul>
+ 
+ 
+</div>
+
+<button class="accordion">How do I get a Car\Two wheeler parking pass? </button>
+<div class="panel">
+	<h4>Please contact:</h4>
+	<ul>
+		<li>Hyderabad :Surya Medisetti </li>
+		<li>Bangalore : Chandra Chikkanna </li>
+		<li>Chennai : Premanandh Ramdass </li>
+	</ul>
+</div>
+
+
+<button class="accordion">Who is the contact person of HDFC salary account? </button>
+<div class="panel">
+	<h4>Please contact:</h4>
+	<ul>
+		<li>Hyderabad :Srikanth - 9393286256  </li>
+		<li>Bangalore : Ashwini - 8147348997  </li>
+		<li>Chennai : Kevin - 9380019015  </li>
+	</ul>
+</div>
+
+
+<button class="accordion">Where I can login to check my payroll details? </button>
+<div class="panel">
+	<h4>Login to the link: <a href="https://www.hrberry.com/smarthr/index.php?q=cms&m=index&client=trianz">HRberry</a> (Please note, you can login only after your 1st salary)</h4>
+</div>
+
+
+
+<button class="accordion">Where can I find key HR policies? </button>
+<div class="panel">
+	<h4>Please go through this link:  <a href="http://trinet.trianz.com/group/assurance/document-library?p_p_id=20&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_20_struts_action=%2Fdocument_library%2Fview_file_entry&_20_redirect=http%3A%2F%2Ftrinet.trianz.com%2Fgroup%2Fassurance%2Fdocument-library%3Fp_p_id%3D20%26p_p_lifecycle%3D0%26p_p_state%3Dnormal%26p_p_mode%3Dview%26_20_entryEnd%3D20%26_20_displayStyle%3D%26_20_viewEntries%3Dtrue%26_20_viewFolders%3Dtrue%26_20_folderStart%3D0%26_20_action%3DbrowseFolder%26_20_struts_action%3D%252Fdocument_library%252Fview%26_20_folderEnd%3D20%26_20_entryStart%3D0%26_20_folderId%3D599588&_20_fileEntryId=599610">HR Policies</a> </h4>
+</div>
+
+
+<button class="accordion">Where can I verify and update personal information? </button>
+<div class="panel">
+	<h4>Please use the link: <a href="http://ebiz.trianz.com:8000/OA_HTML/AppsLocalLogin.jsp?langCode=US">HRMS</a> </h4>
+</div>
+
+
+<button class="accordion">Whether encashment of leave is allowed during my service with organisation? </button>
+<div class="panel">
+	<h4>Earned leave cannot be en-cashed during the service tenure with Trianz. Leave encashment is permitted only at the time of cessation of service with Trianz. </h4>
+</div>
+
+<button class="accordion">What is the limit to accumulate earned leave in my account?</button>
+<div class="panel">
+	<h4>Earned leave can be accumulated maximum of 45 days.</h4>
+</div>
+
+<button class="accordion">What is the eligibility to take company leaves? </button>
+<div class="panel">
+	<h4>Only Full time employees are eligible to take company leaves.</h4>
+</div>
+
+
+<button class="accordion">Who do I contact if I have questions about my insurance and claims? </button>
+<div class="panel">
+	<h4>please contact:</h4>
+	<ul>
+	<li>Name: Roopa (For claims related queries)</li>
+	<li>Contact No: 9606933315</li>
+	<li>Email Id: <a href="mailto:roopa.v@vidalhealthtpa.com">roopa.v@vidalhealthtpa.com</a></li>
+	</ul>
+</div>
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+</body>
+</html>

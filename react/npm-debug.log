@@ -1,0 +1,29 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\phanikumar.manchala\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'init' ]
+2 info using npm@4.1.2
+3 info using node@v6.9.5
+4 verbose config Skipping project config: C:\Users\phanikumar.manchala/.npmrc. (matches userconfig)
+5 silly package data undefined
+6 info init written successfully
+7 verbose stack TypeError: Cannot read property 'replace' of undefined
+7 verbose stack     at module.exports (C:\Users\phanikumar.manchala\AppData\Roaming\npm\node_modules\npm\node_modules\validate-npm-package-license\node_modules\spdx-correct\index.js:211:26)
+7 verbose stack     at module.exports (C:\Users\phanikumar.manchala\AppData\Roaming\npm\node_modules\npm\node_modules\validate-npm-package-license\index.js:60:23)
+7 verbose stack     at C:\Users\phanikumar.manchala\AppData\Roaming\npm\node_modules\npm\node_modules\init-package-json\default-input.js:232:13
+7 verbose stack     at PromZard.<anonymous> (C:\Users\phanikumar.manchala\AppData\Roaming\npm\node_modules\npm\node_modules\init-package-json\node_modules\promzard\promzard.js:226:19)
+7 verbose stack     at onError (C:\Users\phanikumar.manchala\AppData\Roaming\npm\node_modules\npm\node_modules\read\lib\read.js:94:12)
+7 verbose stack     at Interface.<anonymous> (C:\Users\phanikumar.manchala\AppData\Roaming\npm\node_modules\npm\node_modules\read\lib\read.js:66:5)
+7 verbose stack     at emitNone (events.js:86:13)
+7 verbose stack     at Interface.emit (events.js:185:7)
+7 verbose stack     at Interface._ttyWrite (readline.js:726:16)
+7 verbose stack     at ReadStream.onkeypress (readline.js:126:10)
+8 verbose cwd C:\Users\phanikumar.manchala\Desktop\GIT Sync\javaScript\react
+9 error Windows_NT 6.1.7601
+10 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\phanikumar.manchala\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "init"
+11 error node v6.9.5
+12 error npm  v4.1.2
+13 error Cannot read property 'replace' of undefined
+14 error If you need help, you may report this error at:
+14 error     <https://github.com/npm/npm/issues>
+15 verbose exit [ 1, true ]

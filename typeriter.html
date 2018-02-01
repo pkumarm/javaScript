@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+
+
+<p id="Welcome_Message"></p>
+
+<script>
+var i = 0;
+var txt = 'Looking for a LOAN? You are at RIGHT place...';
+var speed = 75;
+$(document).ready(function(){
+  typeWriter();
+})
+function typeWriter(){
+	if (i < txt.length) {
+		document.getElementById("Welcome_Message").innerHTML += txt.charAt(i);
+		i++;
+		setTimeout(typeWriter, speed);
+	  }
+}
+</script>
+
+</body>
+</html>
